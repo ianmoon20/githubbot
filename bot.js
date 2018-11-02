@@ -11,18 +11,23 @@ const diceCommands = {
 };
 const otherCommands = {
     "!help": command.help,
+    "!ban": command.ban,
+    "!unban": command.unban,
+    "!banlist": command.banList,
 }
 
 const greetings = {
     "PoloSpankin": "Oh... he's here. Don't let him roll me.",
     "Vandush": "The mighty king has returned to his throne to bless the land with his presence! Hoozah! Three cheers for Van! Hip-Hip-Hooray! Hip-Hip-Hooray! Hip-Hip-Hooray! Roll me dear master!",
     "Ian": "Master! owo",
+    "THELAGPYRO": "Act natural act natural... we've done nothing wrong.",
 };
 
 const leaving = {
     "PoloSpankin": "Phew. That was a close one.",
     "Vandush": "I miss him already..",
     "Ian": "What am I without my creator? omo",
+    "THELAGPYRO": "Okay, don't panic, alright? Stop panicking!",
 };
 
 client.on('ready', () => {
@@ -60,40 +65,47 @@ client.on('message', msg => {
         }
         const firstWord = content.substr(0, firstSpace);
         let results = "";
-        console.log(firstWord);
-        let response = "Invalid Command";
-        let user = msg.author.username;
+        let response = "\n";
+        let user = "";
+        let author = msg.author.username;
 
         if (diceCommands[firstWord]) {
-            console.log("Dice Command");
-            const dPos = content.indexOf("d");
+            const dPos = content.toLowerCase().indexOf("d");
             const num = content.slice(firstSpace + 1, dPos);
             const size = parseInt(content.slice(dPos + 1, content.length));
-            results = diceCommands[firstWord](num, size, msg.author.username);
+            results = diceCommands[firstWord](author, num, size);
             const length = Object.keys(results).length;
 
             for (let i = 0; i < length - 1; i++) {
                 response += `Die ${i+1}: ${results[i]}\n`
-                console.log(response);
             }
 
             response += `Result: ${results["result"]}`;
 
-            msg.reply(response);
-        }
-        if (otherCommands[firstWord]) {
-            console.log("Not Dice Command");
-            response = otherCommands[firstWord](user);
-            const length = Object.keys(response).length;
+            return msg.reply(response);
+        } else if (otherCommands[firstWord]) {
+            user = content.slice(firstSpace + 1, content.length);
+            response = otherCommands[firstWord](user, author, client);
+            console.log(response);
 
-            const embed = new Discord.RichEmbed().setTitle("Help").setColor(3447003).setDescription("This is a list of commands as well as examples of how to use them.").setTimestamp();
-            
-            for(let i = 0; i < length; i++) {
-                embed.addField(response[i]['name'], response[i]['desc'] + `\nExample: ${response[i]['usage']}`);
+            if (response['embed']) {
+                const length = Object.keys(response).length;
+                const embed = new Discord.RichEmbed().setTitle("Help").setColor(3447003).setDescription("This is a list of commands as well as examples of how to use them.").setTimestamp();
+
+                for (let i = 0; i < length-1; i++) {
+                    embed.addField(response[i]['name'], response[i]['desc'] + `\nExample: ${response[i]['usage']}`);
+                }
+                return msg.channel.send({
+                    embed
+                });
             }
-            msg.channel.send({embed});
+            
+            return msg.channel.send(response);
+        } else {
+            return msg.reply("that's some Rob shit right there. >-< (Invalid Command.)");
+            return msg.
         }
     }
 });
 
-client.login('MzcxMTE0NTg2Nzk2OTgyMjc2.DrwcKg.4l2dnMT0B_clo7xKXTNT_LDLl8s');
+client.login(process.env.TOKEN);
