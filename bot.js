@@ -103,7 +103,6 @@ client.on('message', msg => {
             return msg.channel.send(response);
         } else {
             return msg.reply("that's some Rob shit right there. >-< (Invalid Command.)");
-            return msg.
         }
     }
 });
