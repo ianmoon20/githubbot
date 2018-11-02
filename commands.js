@@ -87,7 +87,7 @@ const RollHighestMeta = () => {
 const ban = (user, author, client) => {
     let response = "He's already been taken care of. -o-";
 
-    if (!bannedUsers[user] && client.users.find(user => user.username == user)) {
+    if (!bannedUsers[user] && client.users.find(user => user.username == `${user}`)) {
         if (author != "Ian") {
             return `You're not my master! >o<`;
         }
@@ -111,7 +111,7 @@ const banMeta = () => {
 
 const unban = (user, author, client) => {
     let response = `You were already able to roll me! >o<`;
-    if (bannedUsers[user] && client.users.find(user => user.username == user)) {
+    if (bannedUsers[user] && client.users.find(user => user.username == `${user}`)) {
         if (author != "Ian") {
             return `You're not my master! >o<`;
         }

@@ -86,7 +86,6 @@ client.on('message', msg => {
         } else if (otherCommands[firstWord]) {
             user = content.slice(firstSpace + 1, content.length);
             response = otherCommands[firstWord](user, author, client);
-            console.log(response);
 
             if (response['embed']) {
                 const length = Object.keys(response).length;
