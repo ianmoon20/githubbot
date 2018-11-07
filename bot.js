@@ -19,7 +19,7 @@ const otherCommands = {
 const greetings = {
     "PoloSpankin": "Oh... he's here. Don't let him roll me.",
     "Vandush": "The mighty king has returned to his throne to bless the land with his presence! Hoozah! Three cheers for Van! Hip-Hip-Hooray! Hip-Hip-Hooray! Hip-Hip-Hooray! Roll me dear master!",
-    "Ian": "Master! owo",
+    "Ian": "Creator! owo",
     "THELAGPYRO": "Act natural act natural... we've done nothing wrong.",
 };
 
@@ -101,7 +101,7 @@ client.on('message', msg => {
             
             return msg.channel.send(response);
         } else {
-            return msg.reply("that's some Rob shit right there. >-< (Invalid Command.)");
+            return msg.reply("Invalid Command. >-<");
         }
     }
 });
