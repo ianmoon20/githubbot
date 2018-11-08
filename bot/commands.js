@@ -94,7 +94,7 @@ const ban = (user, author, client) => {
     response = 'Invalid username';
   } else if (bannedUsers[user]) {
     response = 'That person is already banned!';
-  } else if (user !== 'Ian') {
+  } else if (user === 'Ian') {
     response = 'I will not ban my creator!';
   } else {
     bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
