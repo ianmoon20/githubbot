@@ -8,7 +8,7 @@
     "description": "A simple Dice bot",
     "main": "bot.js",
     "scripts": {
-        "start": "node bot.js",
+        "start": "node ./bot/bot.js",
         "pretest": "eslint ./bot --fix",
         "test": "echo \"Tests complete\""
     },

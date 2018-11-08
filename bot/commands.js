@@ -36,7 +36,7 @@ const RollDice = (user, num, size) => {
   return result;
 };
 
-const RollDiceMeta = () => {
+const rollDiceMeta = () => {
   const meta = {
     name: '!roll',
     desc: 'Gets the total of rolling X die of Y size',
@@ -76,7 +76,7 @@ const RollHighest = (user, num, size) => {
   return result;
 };
 
-const RollHighestMeta = () => {
+const rollHighestMeta = () => {
   const meta = {
     name: '!highest',
     desc: 'Gets the highest roll of X die of Y size',
@@ -210,12 +210,12 @@ const adminListMeta = () => {
 
 const help = () => {
   const results = {
-    0: RollHighestMeta,
-    1: RollDiceMeta,
-    2: banMeta,
-    3: unbanMeta,
-    4: banListMeta,
-    5: adminListMeta,
+    0: rollHighestMeta(),
+    1: rollDiceMeta(),
+    2: banMeta(),
+    3: unbanMeta(),
+    4: banListMeta(),
+    5: adminListMeta(),
     embed: true,
   };
 

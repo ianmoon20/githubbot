@@ -34,7 +34,6 @@ const leaving = {
 };
 
 client.on('ready', () => {
-  console.log('I am ready!');
   if (debug) {
     command.bannedUsers.Ian = "I'm sorry Master.. omo";
   }
@@ -46,9 +45,11 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
   const channel = newMember.guild.channels.find(ch => ch.name === 'nsfw-globalmemedomination');
   if (!channel) return;
 
-  if (oldUserChannel === undefined && newUserChannel !== undefined && greetings[newMember.user.username]) {
-        // User Joins a voice channel
-    channel.send(greetings[newMember.user.username]);
+  if (oldUserChannel === undefined && newUserChannel !== undefined) {
+    if (greetings[newMember.user.username]) {
+          // User Joins a voice channel
+      channel.send(greetings[newMember.user.username]);
+    }
   } else if (newUserChannel === undefined && leaving[newMember.user.username]) {
         // User leaves a voice channel
     channel.send(leaving[newMember.user.username]);
