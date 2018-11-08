@@ -5,6 +5,8 @@ const client = new Discord.Client();
 
 const debug = false;
 
+const token = 'MzcxMTE0NTg2Nzk2OTgyMjc2.DrwcKg.4l2dnMT0B_clo7xKXTNT_LDLl8s';
+
 const diceCommands = {
   '!highest': command.RollHighest,
   '!roll': command.RollDice,
@@ -111,4 +113,5 @@ client.on('message', msg => {
   return false;
 });
 
-client.login(process.env.TOKEN);
+//  process.env.TOKEN
+client.login(token);

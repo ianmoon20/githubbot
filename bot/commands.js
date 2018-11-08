@@ -5,7 +5,7 @@ const bannedUsers = {
 };
 
 const adminUsers = {
-
+  Ian: 'Praise Ian or perish... (/◕ヮ◕)/',
 };
 
 const RollDice = (user, num, size) => {
@@ -88,12 +88,15 @@ const rollHighestMeta = () => {
 
 const ban = (user, author, client) => {
   let response = "They've already been taken care of. (✿◠‿◠)";
-
-  if (!bannedUsers[user] && client.users.find('username', user) && user !== 'Ian') {
-    if (!adminUsers[author]) {
-      return 'You\'re not my master! <(｀^´)>';
-    }
-
+  if (!adminUsers[author]) {
+    return 'You\'re not my master! <(｀^´)>';
+  } else if (!client.users.find('username', user)) {
+    response = 'Invalid username';
+  } else if (bannedUsers[user]) {
+    response = 'That person is already banned!';
+  } else if (user !== 'Ian') {
+    response = 'I will not ban my creator!';
+  } else {
     bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
     response = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
   }
@@ -113,10 +116,13 @@ const banMeta = () => {
 
 const unban = (user, author, client) => {
   let response = 'You were already able to roll me! (╬ ಠ益ಠ)';
-  if (bannedUsers[user] && client.users.find('username', user)) {
-    if (!adminUsers[author]) {
-      return 'You\'re not my master! <(｀^´)>';
-    }
+  if (!adminUsers[author]) {
+    return 'You\'re not my master! <(｀^´)>';
+  } else if (!client.users.find('username', user)) {
+    response = 'Invalid username';
+  } else if (!bannedUsers[user]) {
+    response = 'That person is already unbanned!';
+  } else {
     delete bannedUsers[user];
     response = `You can roll me now, ${user}... (´･ω･\`)`;
   }
@@ -159,14 +165,15 @@ const banListMeta = () => {
 
 const admin = (user, author, client) => {
   let response = "They've already been taken care of. (✿◠‿◠)";
-
-  if (!adminUsers[user] && client.users.find('username', user)) {
-    if (!adminUsers[author]) {
-      return 'You\'re not my master! <(｀^´)>';
-    }
-
+  if (!adminUsers[author]) {
+    return 'You\'re not my master! <(｀^´)>';
+  } else if (!client.users.find('username', user)) {
+    response = 'Invalid username';
+  } else if (adminUsers[user]) {
+    response = 'That person has already arisen!';
+  } else {
     adminUsers[user] = `Praise ${user} or perish... (/◕ヮ◕)/`;
-    response = `${user} 'has arisen! (´･ω･\`)`;
+    response = `Praise ${user} or perish... (/◕ヮ◕)/`;
   }
 
   return response;
@@ -174,10 +181,13 @@ const admin = (user, author, client) => {
 
 const unadmin = (user, author, client) => {
   let response = 'You were already able to roll me! (╬ ಠ益ಠ)';
-  if (adminUsers[user] && client.users.find('username', user) && user !== 'Ian') {
-    if (!adminUsers[author]) {
-      return 'You\'re not my master! <(｀^´)>';
-    }
+  if (!adminUsers[author]) {
+    return 'You\'re not my master! <(｀^´)>';
+  } else if (!client.users.find('username', user)) {
+    response = 'Invalid username';
+  } else if (adminUsers[user]) {
+    response = 'That person has already arisen!';
+  } else {
     delete adminUsers[user];
     response = `You have no power here ${user}.. (╬ ಠ益ಠ)`;
   }
