@@ -185,8 +185,8 @@ const unadmin = (user, author, client) => {
     return 'You\'re not my master! <(｀^´)>';
   } else if (!client.users.find('username', user)) {
     response = 'Invalid username';
-  } else if (adminUsers[user]) {
-    response = 'That person has already arisen!';
+  } else if (!adminUsers[user]) {
+    response = 'That person hasn\'t ascended!';
   } else {
     delete adminUsers[user];
     response = `You have no power here ${user}.. (╬ ಠ益ಠ)`;
