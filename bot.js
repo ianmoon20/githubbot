@@ -14,6 +14,9 @@ const otherCommands = {
     "!ban": command.ban,
     "!unban": command.unban,
     "!banlist": command.banList,
+    "!admin": command.admin,
+    "!revoke": command.unadmin,
+    "!adminlist": command.adminList,
 }
 
 const greetings = {

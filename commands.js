@@ -4,6 +4,10 @@ const bannedUsers = {
 
 };
 
+const adminUsers = {
+
+};
+
 const RollDice = (user, num, size, modifier) => {
     let result = {
         "result": 0,
@@ -85,15 +89,15 @@ const RollHighestMeta = () => {
 };
 
 const ban = (user, author, client) => {
-    let response = "He's already been taken care of. -o-";
+    let response = "They've already been taken care of. (✿◠‿◠)";
     
-    if (!bannedUsers[user] && client.users.find("username", user)) {
-        if (author != "Ian") {
-            return `You're not my master! >o<`;
+    if (!bannedUsers[user] && client.users.find("username", user) && user != "Ian") {
+        if (!adminUsers[author]) {
+            return `You're not my master! <(｀^´)>`;
         }
 
-        bannedUsers[user] = `No more bad touch, ${user}! >o<`;
-        response = `No more bad touch, ${user}! >o<`;
+        bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
+        response = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
     }
 
     return response;
@@ -110,13 +114,13 @@ const banMeta = () => {
 };
 
 const unban = (user, author, client) => {
-    let response = `You were already able to roll me! >o<`;
+    let response = `You were already able to roll me! (╬ ಠ益ಠ)`;
     if (bannedUsers[user] && client.users.find("username", user)) {
-        if (author != "Ian") {
-            return `You're not my master! >o<`;
+        if (!adminUsers[author]) {
+            return `You're not my master! <(｀^´)>`;
         }
         delete bannedUsers[user];
-        response = `You can roll me now, ${user}... owo`;
+        response = `You can roll me now, ${user}...` + " (´･ω･`)";
     }
 
     return response;
@@ -155,6 +159,57 @@ const banListMeta = () => {
     return meta;
 };
 
+const admin = (user, author, client) => {
+    let response = "They've already been taken care of. (✿◠‿◠)";
+    
+    if (!adminUsers[user] && client.users.find("username", user)) {
+        if (!adminUsers[author]) {
+            return `You're not my master! <(｀^´)>`;
+        }
+
+        adminUsers[user] = `Praise ${user} or perish... (/◕ヮ◕)/`;
+        response = `${user} ` + "has arisen! (´･ω･`)";
+    }
+
+    return response;
+};
+
+const unadmin = (user, author, client) => {
+    let response = `You were already able to roll me! (╬ ಠ益ಠ)`;
+    if (adminUsers[user] && client.users.find("username", user) && user != "Ian") {
+        if (!adminUsers[author]) {
+            return `You're not my master! <(｀^´)>`;
+        }
+        delete adminUsers[user];
+        response = `You have no power here ${user}.. (╬ ಠ益ಠ)`;
+    }
+
+    return response;
+};
+
+const adminList = () => {
+    let response = "No one has ascended! (╬ ಠ益ಠ)";
+    if (Object.keys(adminUsers).length > 0) {
+        response = "\nThose currently ascended:"
+        const keys = Object.keys(adminUsers); 
+        for (let i = 0; i < keys.length; i++) {
+            response += `\n${keys[i]}`;
+        }
+    }
+    
+    return response;
+};
+
+const adminListMeta = () => {
+    let meta = {
+        name: "!adminlist",
+        desc: "(/◕ヮ◕)/ View who's been ascended! (/◕ヮ◕)/",
+        usage: "!adminlist",
+    };
+
+    return meta;
+};
+
 const help = () => {
     let results = {
         0: RollHighestMeta(),
@@ -162,6 +217,7 @@ const help = () => {
         2: banMeta(),
         3: unbanMeta(),
         4: banListMeta(),
+        5: adminListMeta(),
         'embed': true,
     };
 
