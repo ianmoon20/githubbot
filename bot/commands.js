@@ -97,8 +97,11 @@ const ban = (user, author, client) => {
   } else if (user === 'Ian') {
     response = 'I will not ban my creator!';
   } else {
-    bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
-    response = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
+      bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
+      if(adminUsers[user]) {
+          delete adminUsers[user];
+      }
+      response = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
   }
 
   return response;
@@ -172,8 +175,11 @@ const admin = (user, author, client) => {
   } else if (adminUsers[user]) {
     response = 'That person has already arisen!';
   } else {
-    adminUsers[user] = `Praise ${user} or perish... (/◕ヮ◕)/`;
-    response = `Praise ${user} or perish... (/◕ヮ◕)/`;
+      if(bannedUsers[user]) {
+          delete bannedUsers[user];
+      }
+      adminUsers[user] = `Praise ${user} or perish... (/◕ヮ◕)/`;
+      response = `Praise ${user} or perish... (/◕ヮ◕)/`;
   }
 
   return response;
