@@ -17,7 +17,7 @@ const otherCommands = {
     "!admin": command.admin,
     "!revoke": command.unadmin,
     "!adminlist": command.adminList,
-}
+};
 
 const greetings = {
     "PoloSpankin": "Oh... he's here. Don't let him roll me.",
