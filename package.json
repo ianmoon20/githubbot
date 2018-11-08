@@ -6,7 +6,7 @@
         "npm": "*"
     },
     "description": "A simple Dice bot",
-    "main": "bot.js",
+    "main": "./bot/bot.js",
     "scripts": {
         "start": "node ./bot/bot.js",
         "pretest": "eslint ./bot --fix",
