@@ -231,3 +231,6 @@ module.exports.unban = unban;
 module.exports.help = help;
 module.exports.bannedUsers = bannedUsers;
 module.exports.banList = banList;
+module.exports.admin = admin,
+module.exports.unadmin = unadmin,
+module.exports.adminList = adminList,

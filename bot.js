@@ -104,7 +104,7 @@ client.on('message', msg => {
             
             return msg.channel.send(response);
         } else {
-            return msg.reply("Invalid Command. >-<");
+            return msg.reply(`Invalid Command. (${firstWord}) >-<`);
         }
     }
 });
