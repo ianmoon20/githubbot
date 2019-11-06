@@ -173,6 +173,8 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (firstWord == "!commands") {
+            console.log(!customCommands.hasOwnProperty(authorID));
+            console.log(customCommands);
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
