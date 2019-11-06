@@ -124,8 +124,10 @@ client.on('message', msg => {
         } else if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][firstWord]) {
             //TO DO: Can be refactored with the code in Dice Commands
             contentMsg = customCommands[authorID][firstWord];
+            console.log(contentMsg);
             const dPos = contentMsg.toLowerCase().indexOf('d');
-            const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
+            const num = parseInt(contentMsg.slice(0, dPos), 10);
+            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             let mod = 0;
             let modPos = contentMsg.length;
             if (contentMsg.includes("+")) {
@@ -133,7 +135,6 @@ client.on('message', msg => {
             } else if (contentMsg.includes("-")) {
                 modPos = contentMsg.toLowerCase().indexOf('-');
             }
-            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             if (modPos != contentMsg.length) {
                 mod = parseInt(contentMsg.slice(modPos, contentMsg.length), 10);
             }
