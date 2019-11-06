@@ -28,6 +28,8 @@ const customCommands = {
 const greetings = {
     //Jonny
     "222039245685129217": "Oh... he's here. Don't let him roll me.",
+    //Gaige
+    "335057766710247425": "I'm scared. ల(｀°Δ°)",
     //Van
     "225430614260711424": 'The mighty king has returned to his throne to bless the land with his presence! Hoozah! Three cheers for Van! Hip-Hip-Hooray! Hip-Hip-Hooray! Hip-Hip-Hooray! Roll me dear master!',
     //Ian
@@ -41,6 +43,8 @@ const greetings = {
 const leaving = {
     //Jonny
     "222039245685129217": 'Phew. That was a close one.',
+    //Gaige
+    "335057766710247425": "Are we safe...?",
     //Van
     "225430614260711424": 'I miss him already..',
     //Ian

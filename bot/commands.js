@@ -9,9 +9,9 @@ const adminUsers = {
     "251911037178085376": 'Praise Ian or perish... (/◕ヮ◕)/',
 };
 
-const RollDice = (user, num, size, mod) => {
+const RollDice = (user, num, size, mod) => { 
     const result = {
-        result: 0,
+        result: mod,
     };
 
     if (bannedUsers[user]) {
@@ -32,8 +32,8 @@ const RollDice = (user, num, size, mod) => {
         const randomResult = random.int(1, size);
         result[i] = randomResult
         result.result += result[i];
+        console.log(result);
     }
-    console.log(result);
     result.result += mod;
     console.log(result);
     return result;
