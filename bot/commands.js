@@ -1,6 +1,6 @@
 const random = require('random');
 const Discord = require('discord.js');
-const client = new Discord.Client();
+let client = "";
 
 const bannedUsers = {
 
@@ -290,3 +290,4 @@ module.exports.banList = banList;
 module.exports.admin = admin;
 module.exports.unadmin = unadmin;
 module.exports.adminList = adminList;
+module.exports.client = client;
