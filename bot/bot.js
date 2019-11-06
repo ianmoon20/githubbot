@@ -76,6 +76,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
 client.on('message', msg => {
     const content = msg.content;
+    
+    console.log(msg.content);
 
     if (content[0] === '!') {
         let firstSpace = content.indexOf(' ');
@@ -179,6 +181,8 @@ client.on('message', msg => {
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
+            
+            console.log(response);
             return msg.reply(response);
         }
 
