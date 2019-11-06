@@ -147,7 +147,8 @@ client.on('message', msg => {
 
             customCommands[authorID][firstWord] = purpose;
 
-        } else if (customCommands[authorID][firstWord]) {
+        } else if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][firstWord]) {
+            //TO DO: Can be refactored with the code in Dice Commands
             contentMsg = customCommands[authorID][firstWord];
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
@@ -173,8 +174,6 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (firstWord == "!commands") {
-            console.log(!customCommands.hasOwnProperty(authorID));
-            console.log(customCommands);
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
