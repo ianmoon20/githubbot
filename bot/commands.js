@@ -30,10 +30,10 @@ const RollDice = (user, num, size, mod) => {
 
     for (let i = 0; i < num; i++) {
         const randomResult = random.int(1, size);
-        result[i] = randomResult + mod;
+        result[i] = randomResult
         result.result += result[i];
     }
-
+    result.result += mod;
     return result;
 };
 
