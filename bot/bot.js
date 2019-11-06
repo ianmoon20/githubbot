@@ -172,15 +172,14 @@ client.on('message', msg => {
             return msg.reply(response);
         } else if (firstword == "!commands") {
             if (!customCommands.hasOwnProperty(authorID)) {
-                response += `You don't have any custom commands, create one using !create.`
+                response += `You don't have any custom commands. See !help.`;
             } else {
                 response += `Here are your custom commands: `
-                for (var keys in json) {
+                for (var keys in customCommands[authorID]) {
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
-
-                return msg.reply(response);
             }
+            return msg.reply(response);
         }
 
         return msg.reply(`Invalid Command. (${firstWord}) >-<`);
