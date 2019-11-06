@@ -33,7 +33,9 @@ const RollDice = (user, num, size, mod) => {
         result[i] = randomResult
         result.result += result[i];
     }
+    console.log(result);
     result.result += mod;
+    console.log(result);
     return result;
 };
 
