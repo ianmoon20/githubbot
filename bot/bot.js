@@ -151,7 +151,7 @@ client.on('message', msg => {
         } else if (otherCommands[firstWord]) {
             //console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
-            response = otherCommands[firstWord](user, authorID, client);
+            response = otherCommands[firstWord](user, authorID, author, client);
 
             if (response.embed) {
                 const length = Object.keys(response).length;
