@@ -6,7 +6,7 @@ const bannedUsers = {
 
 const adminUsers = {
     //Ian
-    251911037178085376: 'Praise Ian or perish... (/◕ヮ◕)/',
+    "251911037178085376": 'Praise Ian or perish... (/◕ヮ◕)/',
 };
 
 const RollDice = (user, num, size, mod) => {

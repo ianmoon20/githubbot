@@ -27,28 +27,28 @@ const customCommands = {
 
 const greetings = {
     //Jonny
-    222039245685129217: "Oh... he's here. Don't let him roll me.",
+    "222039245685129217": "Oh... he's here. Don't let him roll me.",
     //Van
-    225430614260711424: 'The mighty king has returned to his throne to bless the land with his presence! Hoozah! Three cheers for Van! Hip-Hip-Hooray! Hip-Hip-Hooray! Hip-Hip-Hooray! Roll me dear master!',
+    "225430614260711424": 'The mighty king has returned to his throne to bless the land with his presence! Hoozah! Three cheers for Van! Hip-Hip-Hooray! Hip-Hip-Hooray! Hip-Hip-Hooray! Roll me dear master!',
     //Ian
-    251911037178085376: 'Creator! owo',
+    "251911037178085376": 'Creator! owo',
     //Nick J
-    308410594002731008: "Act natural act natural... we've done nothing wrong.",
+    "308410594002731008": "Act natural act natural... we've done nothing wrong.",
     //Merrick
-    300095616116195330: "I've never been so happy! ヽ(*￣o￣*)ノ♩♫♪"
+    "300095616116195330": "I've never been so happy! ヽ(*￣o￣*)ノ♩♫♪"
 };
 
 const leaving = {
     //Jonny
-    222039245685129217: 'Phew. That was a close one.',
+    "222039245685129217": 'Phew. That was a close one.',
     //Van
-    225430614260711424: 'I miss him already..',
+    "225430614260711424": 'I miss him already..',
     //Ian
-    251911037178085376: 'What am I without my creator? omo',
+    "251911037178085376": 'What am I without my creator? omo',
     //Nick J
-    308410594002731008: "Okay, don't panic, alright? Stop panicking!",
+    "308410594002731008": "Okay, don't panic, alright? Stop panicking!",
     //Merrick
-    300095616116195330: "I've never experienced such crushing sadness.. (⌣̩̩́_⌣̩̩̀)"
+    "300095616116195330": "I've never experienced such crushing sadness.. (⌣̩̩́_⌣̩̩̀)"
 };
 
 client.on('ready', () => {
