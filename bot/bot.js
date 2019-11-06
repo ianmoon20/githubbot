@@ -170,9 +170,9 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
-            response += "Command failed for unknown reason. Contact Ian immediately.";
             console.log("Creating Command...");
             const secondspace = content.indexOf(' ', content.indexOf(' ') + 1);
+            console.log(secondspace);
             const name = "!" + content.substr(firstSpace + 1, secondspace);
             console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
