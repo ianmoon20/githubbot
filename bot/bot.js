@@ -107,10 +107,10 @@ client.on('message', msg => {
             } else if (content.includes("-")) {
                 modPos = content.toLowerCase().indexOf('-');
             }
-            const size = parseInt(content.slice(dPos + 1, modPos), 10);
             if (modPos != content.length) {
                 mod = parseInt(content.slice(modPos, content.length), 10);
             }
+            const size = parseInt(content.slice(dPos + 1, modPos), 10);
             results = diceCommands[firstWord](author, num, size, mod);
             const length = Object.keys(results).length;
 
@@ -127,7 +127,6 @@ client.on('message', msg => {
             console.log(contentMsg);
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(0, dPos), 10);
-            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             let mod = 0;
             let modPos = contentMsg.length;
             if (contentMsg.includes("+")) {
@@ -138,6 +137,7 @@ client.on('message', msg => {
             if (modPos != contentMsg.length) {
                 mod = parseInt(contentMsg.slice(modPos, contentMsg.length), 10);
             }
+            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             results = diceCommands[firstWord](author, num, size, mod);
             const length = Object.keys(results).length;
 
