@@ -7,10 +7,6 @@ const debug = false;
 
 const token = process.env.TOKEN;
 
-console.log(command.client);
-command.client = client;
-console.log(command.client);
-
 const diceCommands = {
     '!highest': command.RollHighest,
     '!roll': command.RollDice,
@@ -63,6 +59,7 @@ client.on('ready', () => {
     if (debug) {
         command.bannedUsers.Ian = "I'm sorry Master.. omo";
     }
+    console.log(client.users);
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
@@ -155,7 +152,8 @@ client.on('message', msg => {
         } else if (otherCommands[firstWord]) {
             //console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
-            response = otherCommands[firstWord](user, authorID, author, client);
+            userID = 
+            response = otherCommands[firstWord](user, authorID, client);
 
             if (response.embed) {
                 const length = Object.keys(response).length;
@@ -201,9 +199,7 @@ client.on('message', msg => {
         } else if (firstWord == "!remove") {
             console.log("Removing Command...");
             console.log(content);
-            const secondSpace = content.indexOf('!', content.indexOf('!')+1);
-            console.log(secondSpace);
-            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
+            const name = "!" + content.substr(firstSpace + 1, content.length);
             console.log(name);
 
             if(name.length <= 0) {
