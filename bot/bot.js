@@ -60,7 +60,7 @@ client.on('ready', () => {
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     const newUserChannel = newMember.voiceChannel;
     const oldUserChannel = oldMember.voiceChannel;
-    const channel = newMember.guild.channels.find(ch => ch.name === 'nsfw-globalmemedomination');
+    const channel = newMember.guild.channels.find(ch => ch.name === 'general');
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
