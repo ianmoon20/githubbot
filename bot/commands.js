@@ -10,7 +10,7 @@ const adminUsers = {
 };
 
 const RollDice = (user, num, size, mod) => { 
-    console.log(mod);
+    //console.log(mod);
     
     const result = {
         result: 0,
@@ -34,10 +34,10 @@ const RollDice = (user, num, size, mod) => {
         const randomResult = random.int(1, size);
         result[i] = randomResult
         result.result += result[i];
-        console.log(result);
+        //console.log(result);
     }
     result.result += mod;
-    console.log(result);
+    //console.log(result);
     return result;
 };
 

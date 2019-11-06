@@ -65,18 +65,18 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     const newUserChannel = newMember.voiceChannel;
     const oldUserChannel = oldMember.voiceChannel;
     const channel = newMember.guild.channels.find(ch => ch.name === 'general');
-    console.log("Channel name: " + channel + " " + channel.name);
+    //console.log("Channel name: " + channel + " " + channel.name);
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-        console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
+        //console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
         if (greetings[newMember.user.id]) {
             // User Joins a voice channel
             channel.send(greetings[newMember.user.id]);
         }
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         // User leaves a voice channel
-        console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
+        //console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
         channel.send(leaving[newMember.user.id]);
     }
 });
@@ -97,7 +97,7 @@ client.on('message', msg => {
         const authorID = msg.author.id;
 
         if (diceCommands[firstWord]) {
-            console.log("Dice command: " + firstWord);
+            //console.log("Dice command: " + firstWord);
             const dPos = content.toLowerCase().indexOf('d');
             const num = parseInt(content.slice(firstSpace + 1, dPos), 10);
             let mod = 0;
@@ -117,12 +117,12 @@ client.on('message', msg => {
             for (let i = 0; i < length - 1; i++) {
                 response += `Die ${i + 1}: ${results[i]}\n`;
             }
-
+            
             response += `Result: ${results.result}`;
 
             return msg.reply(response);
         } else if (otherCommands[firstWord]) {
-            console.log("Other command: " + firstWord);
+            //console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
             response = otherCommands[firstWord](user, authorID, client);
 
@@ -144,12 +144,12 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
-            console.log("Creating Command...");
+            //console.log("Creating Command...");
             const secondspace = content.indexOf(' ', str.indexOf(' ') + 1);
             const name = content.substr(firstSpace + 1, secondspace);
-            console.log(name);
+            //console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
-            console.log(pupose);
+            //console.log(pupose);
 
             if (!customCommands.hasOwnProperty(authorID)) {
                 customCommands[authorID] = {};
@@ -171,7 +171,10 @@ client.on('message', msg => {
             }
             const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             if (modPos != contentMsg.length) {
-                mod = parseInt(contentMsg.slice(modPos + 1, modPos), 10);
+                mod = contentMsg.slice(modPos + 1, modPos), 10);
+                console.log(mod);
+                mod = parseInt(mod);
+                console.log(mod);
             }
             results = diceCommands[firstWord](author, num, size, mod);
             const length = Object.keys(results).length;
@@ -184,19 +187,19 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (firstWord == "!commands") {
-            console.log("Listing commands...");
-            console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
+            //console.log("Listing commands...");
+            //console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
                 response += `Here are your custom commands: `;
                 for (var keys in customCommands[authorID]) {
-                    console.log(keys);
+                    //console.log(keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
             
-            console.log(response);
+            //console.log(response);
             return msg.reply(response);
         }
 
