@@ -61,16 +61,19 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     const newUserChannel = newMember.voiceChannel;
     const oldUserChannel = oldMember.voiceChannel;
     const channel = newMember.guild.channels.find(ch => ch.name === 'general');
+    console.log("Channel name: " + channel + " " + channel.name);
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
+        console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
         if (greetings[newMember.user.id]) {
             // User Joins a voice channel
-            channel.send(greetings[newMember.user.id]);
+            channel.send(greetings[newMember.user.username]);
         }
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         // User leaves a voice channel
-        channel.send(leaving[newMember.user.id]);
+        console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
+        channel.send(leaving[newMember.user.username]);
     }
 });
 
@@ -184,7 +187,7 @@ client.on('message', msg => {
             } else {
                 response += `Here are your custom commands: `;
                 for (var keys in customCommands[authorID]) {
-                    console.log("Key: " + keys);
+                    console.log(keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
