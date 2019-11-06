@@ -111,7 +111,7 @@ client.on('message', msg => {
                 mod = parseInt(content.slice(modPos, content.length), 10);
             }
             const size = parseInt(content.slice(dPos + 1, modPos), 10);
-            results = diceCommands[firstWord](author, num, size, mod);
+            results = diceCommands["!roll"](author, num, size, mod);
             const length = Object.keys(results).length;
 
             for (let i = 0; i < length - 1; i++) {
@@ -138,7 +138,7 @@ client.on('message', msg => {
                 mod = parseInt(contentMsg.slice(modPos, contentMsg.length), 10);
             }
             const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
-            results = diceCommands[firstWord](author, num, size, mod);
+            results = command.RollDice(author, num, size, mod);
             const length = Object.keys(results).length;
 
             for (let i = 0; i < length - 1; i++) {
