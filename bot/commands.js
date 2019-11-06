@@ -71,8 +71,8 @@ const RollHighest = (user, num, size, mod) => {
     }
 
     for (let i = 0; i < num; i++) {
-        const randomResult = random.int(1, size) + mod;
-        result[i] = randomResult + mod;
+        let randomResult = random.int(1, size) + mod;
+        result[i] = randomResult;
         if (result[i] > result.result) {
             result.result = result[i];
         }
