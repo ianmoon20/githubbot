@@ -59,7 +59,6 @@ client.on('ready', () => {
     if (debug) {
         command.bannedUsers.Ian = "I'm sorry Master.. omo";
     }
-    console.log(client.users);
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
@@ -152,7 +151,6 @@ client.on('message', msg => {
         } else if (otherCommands[firstWord]) {
             //console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
-            userID = 
             response = otherCommands[firstWord](user, authorID, client);
 
             if (response.embed) {
