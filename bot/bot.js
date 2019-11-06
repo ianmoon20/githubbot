@@ -171,9 +171,9 @@ client.on('message', msg => {
             }
             const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
             if (modPos != contentMsg.length) {
-                mod = contentMsg.slice(modPos + 1, modPos), 10);
+                mod = contentMsg.slice(modPos + 1, modPos);
                 console.log(mod);
-                mod = parseInt(mod);
+                mod = parseInt(mod, 10);
                 console.log(mod);
             }
             results = diceCommands[firstWord](author, num, size, mod);
