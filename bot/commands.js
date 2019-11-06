@@ -10,8 +10,10 @@ const adminUsers = {
 };
 
 const RollDice = (user, num, size, mod) => { 
+    console.log(mod);
+    
     const result = {
-        result: mod,
+        result: 0,
     };
 
     if (bannedUsers[user]) {
