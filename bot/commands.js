@@ -27,8 +27,8 @@ const RollDice = (user, num, size, mod) => {
     if (isNaN(num) || isNaN(size)) {
         result.result = 'Passed in number and size values must be whole numbers. Example: 1d12+0';
         return result;
-    } else if (num < 1 || num > 20 || size <= 1 || size > 100 || mod < -10 || mod > 10) {
-        result.result = 'Invalid size or number. Format Example: XdY+Z where X is 1-20, Y is 2-100, and Z is -10 - 10';
+    } else if (num < 1 || num > 20 || size <= 1 || size > 100 || mod < -20 || mod > 20) {
+        result.result = 'Invalid size or number. Format Example: XdY+Z where X is 1-20, Y is 2-100, and Z is -20 - 20';
         return result;
     }
 

@@ -7,7 +7,7 @@ const debug = false;
 
 const token = process.env.TOKEN;
 
-commando.client = client;
+command.client = client;
 
 const diceCommands = {
     '!highest': command.RollHighest,
