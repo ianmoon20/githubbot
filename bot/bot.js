@@ -203,9 +203,11 @@ client.on('message', msg => {
             if(name.length <= 0) {
                 response += `Missing the name. Format should be like the following: !remove fireball.`;
             } else {
-                if (!customCommands.hasOwnProperty(authorID) && customCommands[authorID][name]) {
+                if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][name]) {
                     delete customCommands[authorID][name];
                     response += `Command ${name} successfully deleted`;
+                } else {
+                    response += `You don't have the ${name}`;
                 }
             }
                 
