@@ -202,7 +202,7 @@ client.on('message', msg => {
             const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
             console.log(name);
 
-            if(name.length <= 0 || ) {
+            if(name.length <= 0) {
                 response += `Missing the name. Format should be like the following: !remove fireball.`;
             } else {
                 if (!customCommands.hasOwnProperty(authorID) && customCommands[authorID][name]) {

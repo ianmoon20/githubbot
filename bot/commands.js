@@ -184,7 +184,7 @@ const banList = () => {
         response = '\nThose currently purged:';
         const keys = Object.keys(bannedUsers);
         for (let i = 0; i < keys.length; i++) {
-            response += `\n${keys[i]}`;
+            response += `\n${client.fetchUser(keys[i]).username}`;
         }
     }
 
