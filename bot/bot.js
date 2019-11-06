@@ -171,7 +171,7 @@ client.on('message', msg => {
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
             //console.log("Creating Command...");
-            const secondspace = content.indexOf(' ', str.indexOf(' ') + 1);
+            const secondspace = content.indexOf(' ', content.indexOf(' ') + 1);
             const name = content.substr(firstSpace + 1, secondspace);
             //console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
