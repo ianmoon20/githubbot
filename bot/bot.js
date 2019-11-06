@@ -115,7 +115,7 @@ client.on('message', msg => {
             return msg.reply(response);
         } else if (otherCommands[firstWord]) {
             user = content.slice(firstSpace + 1, content.length);
-            response = otherCommands[firstWord](user, author, client);
+            response = otherCommands[firstWord](user, authorID, client);
 
             if (response.embed) {
                 const length = Object.keys(response).length;
@@ -135,7 +135,6 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstword == "!create") {
-            const authorID = msg.author.id;
             const secondspace = content.indexOf(' ', str.indexOf(' ') + 1);
             const name = content.substr(firstSpace + 1, secondspace);
             const purpose = content.substr(secondspace + 1, content.length);
@@ -146,8 +145,8 @@ client.on('message', msg => {
 
             customCommands[authorID][firstWord] = purpose;
 
-        } else if (customCommands[msg.author.id][firstword]) {
-            contentMsg = customCommands[msg.author.id][firstword];
+        } else if (customCommands[authorID][firstword]) {
+            contentMsg = customCommands[authorID][firstword];
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
             let mod = 0;
@@ -172,8 +171,6 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (firstword == "!commands") {
-            const authorID = msg.author.id;
-
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands, create one using !create.`
             } else {

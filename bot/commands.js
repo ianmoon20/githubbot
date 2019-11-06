@@ -23,18 +23,16 @@ const RollDice = (user, num, size, mod) => {
     if (isNaN(num) || isNaN(size)) {
         result.result = 'Passed in number and size values must be whole numbers. Example: 1d12+0';
         return result;
-    } else if (num <= 1 || size < 1 || num > 20 || size > 100 || mod < -10 || mod > 10) {
+    } else if (num < 1 || num > 20 || size <= 1  || size > 100 || mod < -10 || mod > 10) {
         result.result = 'Invalid size or number. Format Example: XdY+Z where X is 1-20, Y is 2-100, and Z is -10 - 10';
         return result;
     }
 
     for (let i = 0; i < num; i++) {
         const randomResult = random.int(1, size);
-        result[i] = randomResult;
-        result.result += randomResult;
+        result[i] = randomResult + mod;
+        result.result += result[i];
     }
-
-    result.result += mod;
 
     return result;
 };
@@ -63,16 +61,16 @@ const RollHighest = (user, num, size, mod) => {
     if (isNaN(num) || isNaN(size)) {
         result.result = 'Passed in number and size values must be whole numbers. Example: 1d12+0';
         return result;
-    } else if (num <= 1 || size < 1 || num > 20 || size > 100 || mod < -10 || mod > 10) {
+    } else if (num < 1 || size <= 1 || num > 20 || size > 100 || mod < -10 || mod > 10) {
         result.result = 'Invalid size or number. Format Example: XdY+Z where X is 1-20, Y is 2-100, and Z is -10 - 10';
         return result;
     }
 
     for (let i = 0; i < num; i++) {
         const randomResult = random.int(1, size) + mod;
-        result[i] = randomResult;
-        if (randomResult > result.result) {
-            result.result = randomResult;
+        result[i] = randomResult + mod;
+        if (result[i] > result.result) {
+            result.result = result[i];
         }
     }
 
@@ -94,6 +92,16 @@ const createCustomMeta = (user, purpose) => {
         name: '!create',
         desc: "Creates/Overwrites a custom function that you can reuse by invoking its' name",
         usage: '!create fireball 1d10 (reused by typing !fireball)',
+    };
+
+    return meta;
+};
+
+const commandsMeta = (user, purpose) => {
+    const meta = {
+        name: '!commands',
+        desc: "Lists all your custom commands",
+        usage: '!commands',
     };
 
     return meta;
@@ -244,10 +252,11 @@ const help = () => {
         0: rollHighestMeta(),
         1: rollDiceMeta(),
         2: createCustomMeta(),
-        3: banMeta(),
-        4: unbanMeta(),
-        5: banListMeta(),
-        6: adminListMeta(),
+        3: commandsMeta(),
+        4: banMeta(),
+        5: unbanMeta(),
+        6: banListMeta(),
+        7: adminListMeta(),
         embed: true,
     };
 
