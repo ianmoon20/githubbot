@@ -109,7 +109,7 @@ client.on('message', msg => {
             }
             const size = parseInt(content.slice(dPos + 1, modPos), 10);
             if (modPos != content.length) {
-                mod = parseInt(content.slice(modPos + 1, modPos), 10);
+                mod = parseInt(content.slice(modPos, content.length), 10);
             }
             results = diceCommands[firstWord](author, num, size, mod);
             const length = Object.keys(results).length;
@@ -117,7 +117,33 @@ client.on('message', msg => {
             for (let i = 0; i < length - 1; i++) {
                 response += `Die ${i + 1}: ${results[i]}\n`;
             }
-            
+
+            response += `Result: ${results.result}`;
+
+            return msg.reply(response);
+        } else if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][firstWord]) {
+            //TO DO: Can be refactored with the code in Dice Commands
+            contentMsg = customCommands[authorID][firstWord];
+            const dPos = contentMsg.toLowerCase().indexOf('d');
+            const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
+            let mod = 0;
+            let modPos = contentMsg.length;
+            if (contentMsg.includes("+")) {
+                modPos = contentMsg.toLowerCase().indexOf('+');
+            } else if (contentMsg.includes("-")) {
+                modPos = contentMsg.toLowerCase().indexOf('-');
+            }
+            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
+            if (modPos != contentMsg.length) {
+                mod = parseInt(contentMsg.slice(modPos, contentMsg.length), 10);
+            }
+            results = diceCommands[firstWord](author, num, size, mod);
+            const length = Object.keys(results).length;
+
+            for (let i = 0; i < length - 1; i++) {
+                response += `Die ${i + 1}: ${results[i]}\n`;
+            }
+
             response += `Result: ${results.result}`;
 
             return msg.reply(response);
@@ -157,35 +183,6 @@ client.on('message', msg => {
 
             customCommands[authorID][firstWord] = purpose;
 
-        } else if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][firstWord]) {
-            //TO DO: Can be refactored with the code in Dice Commands
-            contentMsg = customCommands[authorID][firstWord];
-            const dPos = contentMsg.toLowerCase().indexOf('d');
-            const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
-            let mod = 0;
-            let modPos = contentMsg.length;
-            if (contentMsg.includes("+")) {
-                modPos = contentMsg.toLowerCase().indexOf('+');
-            } else if (contentMsg.includes("-")) {
-                modPos = contentMsg.toLowerCase().indexOf('-');
-            }
-            const size = parseInt(contentMsg.slice(dPos + 1, modPos), 10);
-            if (modPos != contentMsg.length) {
-                mod = contentMsg.slice(modPos + 1, modPos);
-                console.log(mod);
-                mod = parseInt(mod, 10);
-                console.log(mod);
-            }
-            results = diceCommands[firstWord](author, num, size, mod);
-            const length = Object.keys(results).length;
-
-            for (let i = 0; i < length - 1; i++) {
-                response += `Die ${i + 1}: ${results[i]}\n`;
-            }
-
-            response += `Result: ${results.result}`;
-
-            return msg.reply(response);
         } else if (firstWord == "!commands") {
             //console.log("Listing commands...");
             //console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
@@ -198,7 +195,7 @@ client.on('message', msg => {
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
-            
+
             //console.log(response);
             return msg.reply(response);
         }
