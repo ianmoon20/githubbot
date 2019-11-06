@@ -134,7 +134,7 @@ client.on('message', msg => {
             }
 
             return msg.channel.send(response);
-        } else if (firstword == "!create") {
+        } else if (firstWord == "!create") {
             const secondspace = content.indexOf(' ', str.indexOf(' ') + 1);
             const name = content.substr(firstSpace + 1, secondspace);
             const purpose = content.substr(secondspace + 1, content.length);
@@ -145,8 +145,8 @@ client.on('message', msg => {
 
             customCommands[authorID][firstWord] = purpose;
 
-        } else if (customCommands[authorID][firstword]) {
-            contentMsg = customCommands[authorID][firstword];
+        } else if (customCommands[authorID][firstWord]) {
+            contentMsg = customCommands[authorID][firstWord];
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(firstSpace + 1, dPos), 10);
             let mod = 0;
@@ -170,7 +170,7 @@ client.on('message', msg => {
             response += `Result: ${results.result}`;
 
             return msg.reply(response);
-        } else if (firstword == "!commands") {
+        } else if (firstWord == "!commands") {
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
