@@ -68,12 +68,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
         if (greetings[newMember.user.id]) {
             // User Joins a voice channel
-            channel.send(greetings[newMember.user.username]);
+            channel.send(greetings[newMember.user.id]);
         }
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         // User leaves a voice channel
         console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
-        channel.send(leaving[newMember.user.username]);
+        channel.send(leaving[newMember.user.id]);
     }
 });
 
