@@ -171,11 +171,12 @@ client.on('message', msg => {
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
             console.log("Creating Command...");
-            const secondspace = content.indexOf(' ', content.indexOf(' ') + 1);
-            console.log(secondspace);
-            const name = "!" + content.substr(firstSpace + 1, secondspace);
+            console.log(content);
+            const secondSpace = content.indexOf(' ', content.indexOf(' ')+1);
+            console.log(secondSpace);
+            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
             console.log(name);
-            const purpose = content.substr(secondspace + 1, content.length);
+            const purpose = content.substr(secondSpace + 1, content.length);
             console.log(purpose);
 
             if(purpose.length <= 0 || name.length <= 0) {
