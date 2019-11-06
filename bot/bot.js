@@ -194,6 +194,25 @@ client.on('message', msg => {
 
             return msg.reply(response);
 
+        } else if (firstWord == "!remove") {
+            console.log("Removing Command...");
+            console.log(content);
+            const secondSpace = content.indexOf('!', content.indexOf('!')+1);
+            console.log(secondSpace);
+            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
+            console.log(name);
+
+            if(name.length <= 0 || ) {
+                response += `Missing the name. Format should be like the following: !remove fireball.`;
+            } else {
+                if (!customCommands.hasOwnProperty(authorID) && customCommands[authorID][name]) {
+                    delete customCommands[authorID][name];
+                    response += `Command ${name} successfully deleted`;
+                }
+            }
+                
+            return msg.reply(response);
+
         } else if (firstWord == "!commands") {
             //console.log("Listing commands...");
             //console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))

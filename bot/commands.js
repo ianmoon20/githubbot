@@ -9,9 +9,9 @@ const adminUsers = {
     "251911037178085376": 'Praise Ian or perish... (/◕ヮ◕)/',
 };
 
-const RollDice = (user, num, size, mod) => { 
+const RollDice = (user, num, size, mod) => {
     //console.log(mod);
-    
+
     const result = {
         result: 0,
     };
@@ -25,7 +25,7 @@ const RollDice = (user, num, size, mod) => {
     if (isNaN(num) || isNaN(size)) {
         result.result = 'Passed in number and size values must be whole numbers. Example: 1d12+0';
         return result;
-    } else if (num < 1 || num > 20 || size <= 1  || size > 100 || mod < -10 || mod > 10) {
+    } else if (num < 1 || num > 20 || size <= 1 || size > 100 || mod < -10 || mod > 10) {
         result.result = 'Invalid size or number. Format Example: XdY+Z where X is 1-20, Y is 2-100, and Z is -10 - 10';
         return result;
     }
@@ -45,7 +45,7 @@ const rollDiceMeta = () => {
     const meta = {
         name: '!roll',
         desc: 'Gets the total of rolling X die of Y size with a modifier of Z',
-        usage: '!roll 2d20+0',
+        usage: '!roll XdY+Z',
     };
 
     return meta;
@@ -85,7 +85,7 @@ const rollHighestMeta = () => {
     const meta = {
         name: '!highest',
         desc: 'Gets the highest roll of X die of Y size and a modifier of Z',
-        usage: '!highest 2d20+0',
+        usage: '!highest XdY+Z',
     };
 
     return meta;
@@ -95,7 +95,17 @@ const createCustomMeta = (user, purpose) => {
     const meta = {
         name: '!create',
         desc: "Creates/Overwrites a custom function that you can reuse by invoking its' name",
-        usage: '!create fireball 1d10 (reused by typing !fireball)',
+        usage: '!create name XdY (reused by typing !fireball)',
+    };
+
+    return meta;
+};
+
+const removeCustomMeta = (user, purpose) => {
+    const meta = {
+        name: '!remove',
+        desc: "Removes a custom function",
+        usage: '!remove fireball (without an "!")',
     };
 
     return meta;
@@ -234,7 +244,7 @@ const adminList = () => {
         response = '\nThose currently ascended:';
         const keys = Object.keys(adminUsers);
         for (let i = 0; i < keys.length; i++) {
-            response += `\n${keys[i]}`;
+            response += `\n${client.fetchUser(keys[i]).username}`;
         }
     }
 
@@ -256,11 +266,12 @@ const help = () => {
         0: rollHighestMeta(),
         1: rollDiceMeta(),
         2: createCustomMeta(),
-        3: commandsMeta(),
-        4: banMeta(),
-        5: unbanMeta(),
-        6: banListMeta(),
-        7: adminListMeta(),
+        3: removeCustomMeta(),
+        4: commandsMeta(),
+        5: banMeta(),
+        6: unbanMeta(),
+        7: banListMeta(),
+        8: adminListMeta(),
         embed: true,
     };
 
