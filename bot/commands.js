@@ -1,6 +1,6 @@
 const random = require('random');
 const Discord = require('discord.js');
-let client = "";
+let client = "hello";
 
 const bannedUsers = {
 
