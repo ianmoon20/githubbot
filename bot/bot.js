@@ -216,7 +216,7 @@ client.on('message', msg => {
         } else if (firstWord == "!commands") {
             //console.log("Listing commands...");
             //console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
-            if (!customCommands.hasOwnProperty(authorID)) {
+            if (!customCommands.hasOwnProperty(authorID) || Object.keys(customCommands[authorID]).length == 0) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
                 response += `Here are your custom commands: \n`;
