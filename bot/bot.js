@@ -170,18 +170,22 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
-            //console.log("Creating Command...");
+            console.log("Creating Command...");
             const secondspace = content.indexOf(' ', content.indexOf(' ') + 1);
-            const name = content.substr(firstSpace + 1, secondspace);
-            //console.log(name);
+            const name = "!" + content.substr(firstSpace + 1, secondspace);
+            console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
-            //console.log(pupose);
+            console.log(pupose);
 
             if (!customCommands.hasOwnProperty(authorID)) {
                 customCommands[authorID] = {};
             }
 
-            customCommands[authorID][firstWord] = purpose;
+            customCommands[authorID][name] = purpose;
+            
+            response += `Command ${name} created! Type ${name} to use.`;
+
+            return msg.reply(response);
 
         } else if (firstWord == "!commands") {
             //console.log("Listing commands...");
