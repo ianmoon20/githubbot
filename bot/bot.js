@@ -64,20 +64,18 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-        if (greetings[newMember.user.username]) {
+        if (greetings[newMember.user.id]) {
             // User Joins a voice channel
-            channel.send(greetings[newMember.user.username]);
+            channel.send(greetings[newMember.user.id]);
         }
-    } else if (newUserChannel === undefined && leaving[newMember.user.username]) {
+    } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         // User leaves a voice channel
-        channel.send(leaving[newMember.user.username]);
+        channel.send(leaving[newMember.user.id]);
     }
 });
 
 client.on('message', msg => {
     const content = msg.content;
-    
-    console.log(msg.content);
 
     if (content[0] === '!') {
         let firstSpace = content.indexOf(' ');
@@ -92,6 +90,7 @@ client.on('message', msg => {
         const authorID = msg.author.id;
 
         if (diceCommands[firstWord]) {
+            console.log("Dice command: " + firstWord);
             const dPos = content.toLowerCase().indexOf('d');
             const num = parseInt(content.slice(firstSpace + 1, dPos), 10);
             let mod = 0;
@@ -116,6 +115,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (otherCommands[firstWord]) {
+            console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
             response = otherCommands[firstWord](user, authorID, client);
 
@@ -137,9 +137,12 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
+            console.log("Creating Command...");
             const secondspace = content.indexOf(' ', str.indexOf(' ') + 1);
             const name = content.substr(firstSpace + 1, secondspace);
+            console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
+            console.log(pupose);
 
             if (!customCommands.hasOwnProperty(authorID)) {
                 customCommands[authorID] = {};
@@ -174,11 +177,14 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (firstWord == "!commands") {
+            console.log("Listing commands...");
+            console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
-                response += `Here are your custom commands: `
+                response += `Here are your custom commands: `;
                 for (var keys in customCommands[authorID]) {
+                    console.log("Key: " + keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }

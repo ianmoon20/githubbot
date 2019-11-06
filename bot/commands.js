@@ -113,11 +113,11 @@ const ban = (user, author, client) => {
     let response = "They've already been taken care of. (✿◠‿◠)";
     if (!adminUsers[author]) {
         return 'You\'re not my master! <(｀^´)>';
-    } else if (!client.users.find('username', user)) {
+    } else if (!client.users.find('id', user)) {
         response = 'Invalid username';
     } else if (bannedUsers[user]) {
         response = 'That person is already banned!';
-    } else if (user === 'Ian') {
+    } else if (user == 251911037178085376) {
         response = 'I will not ban my creator!';
     } else {
         bannedUsers[user] = `No more bad touch, ${user}! (╬ ಠ益ಠ)`;
