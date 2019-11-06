@@ -170,6 +170,7 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
+            response += "Command failed for unknown reason. Contact Ian immediately.";
             console.log("Creating Command...");
             const secondspace = content.indexOf(' ', content.indexOf(' ') + 1);
             const name = "!" + content.substr(firstSpace + 1, secondspace);
@@ -177,13 +178,17 @@ client.on('message', msg => {
             const purpose = content.substr(secondspace + 1, content.length);
             console.log(pupose);
 
-            if (!customCommands.hasOwnProperty(authorID)) {
-                customCommands[authorID] = {};
-            }
-
-            customCommands[authorID][name] = purpose;
+            if(purpose.length <= 0 || name.length <= 0) {
+                response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
+            } else {
+                if (!customCommands.hasOwnProperty(authorID)) {
+                    customCommands[authorID] = {};
+                }
+                
+                customCommands[authorID][name] = purpose;
             
-            response += `Command ${name} created! Type ${name} to use.`;
+                response += `Command ${name} created! Type ${name} to use.`;
+            }
 
             return msg.reply(response);
 
