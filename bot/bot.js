@@ -176,7 +176,7 @@ client.on('message', msg => {
             const name = "!" + content.substr(firstSpace + 1, secondspace);
             console.log(name);
             const purpose = content.substr(secondspace + 1, content.length);
-            console.log(pupose);
+            console.log(purpose);
 
             if(purpose.length <= 0 || name.length <= 0) {
                 response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
@@ -198,7 +198,7 @@ client.on('message', msg => {
             if (!customCommands.hasOwnProperty(authorID)) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
-                response += `Here are your custom commands: `;
+                response += `Here are your custom commands: \n`;
                 for (var keys in customCommands[authorID]) {
                     //console.log(keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
