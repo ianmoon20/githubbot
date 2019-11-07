@@ -174,14 +174,17 @@ client.on('message', msg => {
             console.log("Creating Command...");
             console.log(content);
             const secondSpace = content.indexOf(' ', content.indexOf(' ')+1);
+            const thirdSpace = content.indexOf(' ', content.indexOf(' ')+2);
             console.log(secondSpace);
             const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
             console.log(name);
             const purpose = content.substr(secondSpace + 1, content.length);
             console.log(purpose);
 
-            if(purpose.length <= 0 || name.length <= 0) {
+            if(firstSpace == -1 || secondSpace == -1) {
                 response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
+            } else if(thirdSpace != -1) {
+                response += `Too many arguments. This is usually caused by using a two word name. Format should be like the following: !create MyDagger 1d4+2.`;
             } else {
                 if (!customCommands.hasOwnProperty(authorID)) {
                     customCommands[authorID] = {};
