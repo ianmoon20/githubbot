@@ -243,7 +243,7 @@ client.on('message', msg => {
             } else {
                 response += `Here are your custom commands: \nUniversal: \n`;
                 for (var keys in customCommands["universal"]) {
-                    response += keys + `: ` + customCommands[authorID][keys] + `\n`;
+                    response += keys + `: ` + customCommands["universal"][keys] + `\n`;
                 }
                 response += `Personal: \n`;
                 for (var keys in customCommands[authorID]) {
