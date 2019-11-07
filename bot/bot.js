@@ -22,7 +22,7 @@ const otherCommands = {
 };
 
 const customCommands = {
-    'universal': {
+    "universal": {
         '2': "!roll 1d2+0",
         '4': "!roll 1d4+0",
         '6': "!roll 1d6+0",
@@ -74,18 +74,13 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     const newUserChannel = newMember.voiceChannel;
     const oldUserChannel = oldMember.voiceChannel;
     const channel = newMember.guild.channels.find(ch => ch.name === 'general');
-    //console.log("Channel name: " + channel + " " + channel.name);
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-        //console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
-        if (greetings[newMember.user.id]) {
             // User Joins a voice channel
             channel.send(greetings[newMember.user.id]);
         }
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
-        // User leaves a voice channel
-        //console.log("ID: " + newMember.user.id + " Username: " + newMember.user.username);
         channel.send(leaving[newMember.user.id]);
     }
 });
@@ -106,7 +101,6 @@ client.on('message', msg => {
         const authorID = msg.author.id;
 
         if (diceCommands[firstWord]) {
-            //console.log("Dice command: " + firstWord);
             const dPos = content.toLowerCase().indexOf('d');
             const num = parseInt(content.slice(firstSpace + 1, dPos), 10);
             let mod = 0;
@@ -131,9 +125,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (customCommands.hasOwnProperty(authorID) && customCommands[authorID][firstWord]) {
-            //TO DO: Can be refactored with the code in Dice Commands
             contentMsg = customCommands[authorID][firstWord];
-            console.log(contentMsg);
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(0, dPos), 10);
             let mod = 0;
@@ -160,7 +152,6 @@ client.on('message', msg => {
         } else if (customCommands["universal"].hasOwnProperty(firstWord)) {
             //TO DO: Can be refactored with the code in Dice Commands
             contentMsg = customCommands["universal"][firstWord];
-            console.log(contentMsg);
             const dPos = contentMsg.toLowerCase().indexOf('d');
             const num = parseInt(contentMsg.slice(0, dPos), 10);
             let mod = 0;
@@ -185,7 +176,6 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (otherCommands[firstWord]) {
-            //console.log("Other command: " + firstWord);
             user = content.slice(firstSpace + 1, content.length);
             response = otherCommands[firstWord](user, authorID, client);
 
@@ -207,22 +197,16 @@ client.on('message', msg => {
 
             return msg.channel.send(response);
         } else if (firstWord == "!create") {
-            console.log("Creating Command...");
-            console.log(content);
             const secondSpace = content.indexOf(' ', firstSpace + 1);
             const thirdSpace = content.indexOf(' ', secondSpace + 1);
-            console.log(thirdSpace);
-            console.log(secondSpace);
             const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace - 1);
-            console.log(name);
             const purpose = content.substr(secondSpace + 1, content.length);
-            console.log(purpose);
 
             if (firstSpace == -1 || secondSpace == -1) {
                 response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
             } else if (thirdSpace != -1) {
                 response += `Too many arguments. This is usually caused by using a two word name. Format should be like the following: !create MyDagger 1d4+2.`;
-            } else if (diceCommands.hasOwnProperty(name) || otherCommands.hasOwnProperty(name) || name == "create" || name == remove || name == "commands") {
+            } else if (diceCommands.hasOwnProperty(name) || otherCommands.hasOwnProperty(name) || name == "create" || name == "remove" || name == "commands") {
                 response += `Name '${name}' is already reserved for other commands.`;
             } else {
                 if (!customCommands.hasOwnProperty(authorID)) {
@@ -237,10 +221,7 @@ client.on('message', msg => {
             return msg.reply(response);
 
         } else if (firstWord == "!remove") {
-            console.log("Removing Command...");
-            console.log(content);
             const name = "!" + content.substr(firstSpace + 1, content.length);
-            console.log(name);
 
             if (name.length <= 0) {
                 response += `Missing the name. Format should be like the following: !remove fireball.`;
@@ -256,24 +237,19 @@ client.on('message', msg => {
             return msg.reply(response);
 
         } else if (firstWord == "!commands") {
-            //console.log("Listing commands...");
-            //console.log("Have ID?: " + !customCommands.hasOwnProperty(authorID))
             if (!customCommands.hasOwnProperty(authorID) || Object.keys(customCommands[authorID]).length == 0 || Object.keys(customCommands["universal"]).length == 0) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
                 response += `Here are your custom commands: \nUniversal: \n`;
                 for (var keys in customCommands["universal"]) {
-                    //console.log(keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
                 response += `Personal: \n`;
                 for (var keys in customCommands[authorID]) {
-                    //console.log(keys);
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
-
-            //console.log(response);
+            
             return msg.reply(response);
         }
 
