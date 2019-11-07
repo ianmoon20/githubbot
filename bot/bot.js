@@ -175,6 +175,7 @@ client.on('message', msg => {
             console.log(content);
             const secondSpace = content.indexOf(' ', content.indexOf(' ')+1);
             const thirdSpace = content.indexOf(' ', content.indexOf(' ')+2);
+            console.log(thirdSpace);
             console.log(secondSpace);
             const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
             console.log(name);
