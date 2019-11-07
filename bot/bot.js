@@ -173,8 +173,8 @@ client.on('message', msg => {
         } else if (firstWord == "!create") {
             console.log("Creating Command...");
             console.log(content);
-            const secondSpace = content.indexOf(' ', content.indexOf(' ')+1);
-            const thirdSpace = content.indexOf(' ', content.indexOf(' ')+2);
+            const secondSpace = content.indexOf(' ', firstSpace+1);
+            const thirdSpace = content.indexOf(' ', secondSpace+1);
             console.log(thirdSpace);
             console.log(secondSpace);
             const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace-1);
