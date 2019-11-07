@@ -237,7 +237,8 @@ client.on('message', msg => {
             return msg.reply(response);
 
         } else if (firstWord == "!commands") {
-            if (!customCommands.hasOwnProperty(authorID) || Object.keys(customCommands[authorID]).length == 0 || Object.keys(customCommands["universal"]).length == 0) {
+            console.log(Object.keys(customCommands["universal"]).length);
+            if (!customCommands.hasOwnProperty(authorID) && Object.keys(customCommands[authorID]).length == 0 && Object.keys(customCommands["universal"]).length == 0) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
                 response += `Here are your custom commands: \nUniversal: \n`;
