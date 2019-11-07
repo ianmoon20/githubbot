@@ -157,7 +157,7 @@ client.on('message', msg => {
             response += `Result: ${results.result}`;
 
             return msg.reply(response);
-        } else if (customCommands[universal].hasOwnProperty(firstWord)) {
+        } else if (customCommands["universal"].hasOwnProperty(firstWord)) {
             //TO DO: Can be refactored with the code in Dice Commands
             contentMsg = customCommands["universal"][firstWord];
             console.log(contentMsg);
