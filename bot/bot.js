@@ -99,6 +99,8 @@ client.on('message', msg => {
         let user = '';
         const author = msg.author.username;
         const authorID = msg.author.id;
+        console.log(customCommands["universal"].hasOwnProperty(firstWord));
+        console.log(customCommands["universal"][firstWord]);
 
         if (diceCommands[firstWord]) {
             const dPos = content.toLowerCase().indexOf('d');
