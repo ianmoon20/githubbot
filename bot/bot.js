@@ -11,7 +11,8 @@ const diceCommands = {
     '!highest': command.RollHighest,
     '!roll': command.RollDice,
 };
-const otherCommands = {
+
+const adminCommands = {
     '!help': command.help,
     '!ban': command.ban,
     '!unban': command.unban,
@@ -77,9 +78,8 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-            // User Joins a voice channel
-            channel.send(greetings[newMember.user.id]);
-        }
+        // User Joins a voice channel
+        channel.send(greetings[newMember.user.id]);
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         channel.send(leaving[newMember.user.id]);
     }
@@ -175,9 +175,9 @@ client.on('message', msg => {
             response += `Result: ${results.result}`;
 
             return msg.reply(response);
-        } else if (otherCommands[firstWord]) {
+        } else if (adminCommands[firstWord]) {
             user = content.slice(firstSpace + 1, content.length);
-            response = otherCommands[firstWord](user, authorID, client);
+            response = adminCommands[firstWord](user, authorID, client);
 
             if (response.embed) {
                 const length = Object.keys(response).length;
@@ -206,7 +206,7 @@ client.on('message', msg => {
                 response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
             } else if (thirdSpace != -1) {
                 response += `Too many arguments. This is usually caused by using a two word name. Format should be like the following: !create MyDagger 1d4+2.`;
-            } else if (diceCommands.hasOwnProperty(name) || otherCommands.hasOwnProperty(name) || name == "create" || name == "remove" || name == "commands") {
+            } else if (diceCommands.hasOwnProperty(name) || adminCommands.hasOwnProperty(name) || name == "create" || name == "remove" || name == "commands") {
                 response += `Name '${name}' is already reserved for other commands.`;
             } else {
                 if (!customCommands.hasOwnProperty(authorID)) {
@@ -249,7 +249,7 @@ client.on('message', msg => {
                     response += keys + `: ` + customCommands[authorID][keys] + `\n`;
                 }
             }
-            
+
             return msg.reply(response);
         }
 
