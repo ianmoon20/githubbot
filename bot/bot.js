@@ -20,6 +20,7 @@ const adminCommands = {
     '!admin': command.admin,
     '!revoke': command.unadmin,
     '!adminlist': command.adminList,
+    '!unadmin': command.unadmin
 };
 
 const customCommands = {
