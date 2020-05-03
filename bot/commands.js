@@ -186,7 +186,7 @@ const banList = () => {
     response = '\nThose currently purged:';
     const keys = Object.keys(bannedUsers);
     for (let i = 0; i < keys.length; i++) {
-      response += `\n${`<@` + keys[i] + `>`}`;
+      response += `\n${`<@${keys[i]}>`}`;
     }
   }
 
@@ -246,7 +246,7 @@ const adminList = () => {
     response = '\nThose currently ascended:';
     const keys = Object.keys(adminUsers);
     for (let i = 0; i < keys.length; i++) {
-      response += `\n${`<@` + keys[i] + `>`}`;
+      response += `\n${`<@${keys[i]}>`}`;
     }
   }
 

@@ -1,7 +1,10 @@
 const Discord = require('discord.js');
 const command = require('./commands.js');
-const Crystalmethlabs = require('crystalmethlabs');
-const cml = new Crystalmethlabs();
+const async = require("async");
+const oldschooljs = require('oldschooljs');
+import { Items } from 'oldschooljs';
+
+await Items.fetchAll();
 
 const client = new Discord.Client();
 
@@ -37,8 +40,6 @@ const customCommands = {
         '!100': "1d100+0",
     }
 };
-
-const runescape
 
 const greetings = {
     //Jonny
@@ -278,18 +279,10 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if(firstWord == "RuneScape") {
-            channel.send("Finding Hours...");
-            (async() => {
-                const {
-                    err,
-                    ttm
-                } = await cml.ttm('hoohoomoomoo');
-                if (!err) {
-                    channel.send("Only " + ttm.hours + "more hours to go Nick...");
-                    // { hours: 0, rank: 268 }
-                    // lynx titan was the 268th person to max in oldschool runescape
-                }
-            })();
+            var obj_keys = Object.keys(Items);
+            var ran_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
+            
+            return msg.reply("Find me a... " + Items[ran_key].name);
         }
 
         return msg.reply(`Invalid Command. (${firstWord}) >-<`);
