@@ -15,10 +15,12 @@
     "author": "Ian Moon",
     "license": "ISC",
     "dependencies": {
+        "crystalmethlabs": "^1.1.0",
         "dblapi.js": "^2.3.0",
         "discord.io": "^2.5.3",
         "discord.js": "^11.4.2",
         "nodemon": "^1.18.5",
+        "osrs-api": "^0.1.2",
         "random": "^2.0.12",
         "winston": "^3.1.0"
     },

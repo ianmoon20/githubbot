@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const command = require('./commands.js');
+const Crystalmethlabs = require('crystalmethlabs');
+const cml = new Crystalmethlabs();
 
 const client = new Discord.Client();
 
@@ -36,6 +38,8 @@ const customCommands = {
     }
 };
 
+const runescape
+
 const greetings = {
     //Jonny
     "222039245685129217": "Oh... he's here. Don't let him roll me.",
@@ -70,6 +74,8 @@ client.on('ready', () => {
     if (debug) {
         command.bannedUsers.Ian = "I'm sorry Master.. omo";
     }
+
+
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
@@ -79,8 +85,22 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
+        /*if (newMember.user.id = "251911242824941569") {
+            (async() => {
+                const {
+                    err,
+                    ttm
+                } = await cml.ttm('hoohoomoomoo');
+                if (!err) {
+                    channel.send(ttm.hours);
+                    // { hours: 0, rank: 268 }
+                    // lynx titan was the 268th person to max in oldschool runescape
+                }
+            })();
+        }*/
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
+
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         channel.send(leaving[newMember.user.id]);
     }
@@ -177,7 +197,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (adminCommands[firstWord]) {
-            if(msg.mentions.users.first()) {
+            if (msg.mentions.users.first()) {
                 user = msg.mentions.users.first().id;
             } else {
                 user = content.slice(firstSpace + 1, content.length);
@@ -257,6 +277,19 @@ client.on('message', msg => {
             }
 
             return msg.reply(response);
+        } else if(firstWord == "RuneScape") {
+            channel.send("Finding Hours...");
+            (async() => {
+                const {
+                    err,
+                    ttm
+                } = await cml.ttm('hoohoomoomoo');
+                if (!err) {
+                    channel.send("Only " + ttm.hours + "more hours to go Nick...");
+                    // { hours: 0, rank: 268 }
+                    // lynx titan was the 268th person to max in oldschool runescape
+                }
+            })();
         }
 
         return msg.reply(`Invalid Command. (${firstWord}) >-<`);
