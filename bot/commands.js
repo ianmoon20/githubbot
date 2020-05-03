@@ -131,7 +131,7 @@ const ban = (user, author, client) => {
     response = 'Invalid username';
   } else if (bannedUsers[user]) {
     response = 'That person is already banned!';
-  } else if (user === 251911037178085376) {
+  } else if (user === '251911037178085376') {
     response = 'I will not ban my creator!';
   } else {
     bannedUsers[user] = `No more bad touch, ${`<@${user}>`}! (╬ ಠ益ಠ)`;
@@ -230,7 +230,7 @@ const unadmin = (user, author, client) => {
     response = 'Invalid username';
   } else if (!adminUsers[user]) {
     response = 'That person hasn\'t ascended!';
-  } else if (user === 251911037178085376) {
+  } else if (user === '251911037178085376') {
     response = 'I will not harm my creator!';
   } else {
     delete adminUsers[user];
