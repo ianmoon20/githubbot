@@ -94,17 +94,13 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
         if (newMember.user.id === '251911242824941569') {
-            channel.send(nickCommands['!setmonster']('251911037178085376'));
+            channel.send(nickCommands['!setmonster']('371114586796982276'));
         }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         if (newMember.user.id === '251911242824941569') {
-            if (hasKilled === false) {
-                channel.send("<@251911242824941569> This is why you can't raid! ｡゜(｀Д´)゜｡");
-            } else {
-                channel.send("<@251911242824941569> The madlad did it... (ʘᗩʘ')");
-            }
+            command.nickLeaving();
         }
         channel.send(leaving[newMember.user.id]);
     }

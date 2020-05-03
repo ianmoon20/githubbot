@@ -9,6 +9,8 @@ const bannedUsers = {
 const adminUsers = {
     // Ian
     '251911037178085376': 'Praise Ian or perish... (/◕ヮ◕)/',
+    // The bot
+    '371114586796982276': "I'm a... master? (ʘдʘ╬)"
 };
 
 /* NICK FUNCTIONS*/
@@ -16,6 +18,19 @@ const NickID = '251911242824941569';
 let currentMonster = null;
 let nickPoints = 0;
 let currentBounty = 0;
+
+const nickLeaving = (client) => {
+    let response = `Where do you think you're going? Who's gonna kill this ${currentMonster}!? (۶ᵒ̌▱๋ᵒ̌ )۶`
+    if (currentMonster === null) {
+        let response = `He's earned his leave... (´◉◞౪◟◉)`;
+    } else if (nickPoints === 1000) {
+        if (!bannedUsers['225430614260711424']) {
+            return ban('225430614260711424', '251911037178085376', client);
+        }
+    }
+
+    return response;
+}
 
 const confirmKill = (author, client) => {
     let response = `${`<@${NickID}>`} has no monster set.`;
@@ -147,7 +162,7 @@ const modifyPointsMeta = () => {
 const getStats = (author, client) => {
     let response;
     if (currentMonster != null) {
-        response = `${`<@${NickID}>`}'s current currentMonster is ${currentMonster} which is worth ${currentBounty} points. He has ${nickPoints} points.`;
+        response = `${`<@${NickID}>`}'s current current monster is ${currentMonster} which is worth ${currentBounty} points. He has ${nickPoints} points.`;
     } else {
         response = `${`<@${NickID}>`} has ${nickPoints} points.`;
     }
@@ -458,3 +473,4 @@ module.exports.reroll = reroll;
 module.exports.setBounty = setBounty;
 module.exports.modifyPoints = modifyPoints;
 module.exports.getStats = getStats;
+module.exports.nickLeaving = nickLeaving;
