@@ -12,7 +12,7 @@ const adminUsers = {
 };
 
 /* NICK FUNCTIONS*/
-const NickID = 251911242824941569;
+const NickID = '251911242824941569';
 let currentMonster = null;
 let nickPoints = 0;
 let currentBounty = 0;
@@ -26,7 +26,7 @@ const confirmKill = (author, client) => {
   currentMonster = null;
   nickPoints += currentBounty;
   currentBounty = 0;
-
+    
   response = `${`<@${NickID}>`} has slain ${currentMonster} for ${currentBounty} points! He's now at ${nickPoints}. ☜(˚▽˚)☞`;
 
   return response;
