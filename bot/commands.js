@@ -97,7 +97,7 @@ const createCustomMeta = (user, purpose) => {
   const meta = {
     name: '!create',
     desc: "Creates/Overwrites a custom function that you can reuse by invoking its' name",
-    usage: '!create name XdY (reused by typing !name)',
+    usage: '!create name XdY+Z (reused by typing !name)',
   };
 
   return meta;
@@ -147,8 +147,8 @@ const ban = (user, author, client) => {
 const banMeta = () => {
   const meta = {
     name: '!ban',
-    desc: 'Stops a person from rolling',
-    usage: '!ban Name',
+    desc: 'Stops a person from rolling. Use this by mentioning the user.',
+    usage: '!ban @mention',
   };
 
   return meta;
@@ -174,7 +174,7 @@ const unbanMeta = () => {
   const meta = {
     name: '!unban',
     desc: 'Allows a person to person to rolling.',
-    usage: '!unban Name',
+    usage: '!unban @mention',
   };
 
   return meta;
