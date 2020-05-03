@@ -204,7 +204,7 @@ client.on('message', msg => {
         } else if (firstWord == "!create") {
             const secondSpace = content.indexOf(' ', firstSpace + 1);
             const thirdSpace = content.indexOf(' ', secondSpace + 1);
-            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace - 1);
+            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace - 1).toLowerCase();
             const purpose = content.substr(secondSpace + 1, content.length);
 
             if (firstSpace == -1 || secondSpace == -1) {
@@ -226,7 +226,7 @@ client.on('message', msg => {
             return msg.reply(response);
 
         } else if (firstWord == "!remove") {
-            const name = "!" + content.substr(firstSpace + 1, content.length);
+            const name = "!" + content.substr(firstSpace + 1, content.length).toLowerCase();
 
             if (name.length <= 0) {
                 response += `Missing the name. Format should be like the following: !remove fireball.`;
