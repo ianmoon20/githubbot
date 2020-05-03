@@ -275,9 +275,10 @@ client.on('message', msg => {
             }
 
             return msg.reply(response);
-        } else if(firstWord == "RuneScape") {
+        } else if(firstWord == "!runescape") {
             var obj_keys = Object.keys(oldschooljs.Monsters);
             var ran_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
+            console.log(oldschooljs);
             
             return msg.reply("Find me a... " + oldschooljs.Monsters[ran_key].name);
         }
