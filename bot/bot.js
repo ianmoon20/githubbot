@@ -2,9 +2,8 @@ const Discord = require('discord.js');
 const command = require('./commands.js');
 const async = require("async");
 const oldschooljs = require('oldschooljs');
-import { Items } from 'oldschooljs';
 
-await Items.fetchAll();
+await oldschooljs.fetchAll();
 
 const client = new Discord.Client();
 
@@ -279,10 +278,10 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if(firstWord == "RuneScape") {
-            var obj_keys = Object.keys(Items);
+            var obj_keys = Object.keys(oldschooljs);
             var ran_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
             
-            return msg.reply("Find me a... " + Items[ran_key].name);
+            return msg.reply("Find me a... " + oldschooljs[ran_key].name);
         }
 
         return msg.reply(`Invalid Command. (${firstWord}) >-<`);
