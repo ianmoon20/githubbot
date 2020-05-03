@@ -85,7 +85,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
         if (newMember.user.id = "251911242824941569") {
             var monster_keys = Object.keys(oldschooljs.Monsters);
-            var ran_key = monster_keys[Math.floor(Math.random() * obj_keys.length)];
+            var ran_key = monster_keys[Math.floor(Math.random() * monster_keys.length)];
             
             var obj_keys = Object.keys(oldschooljs.Monsters);
             var item_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
