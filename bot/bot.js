@@ -90,7 +90,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             var item_keys = Object.keys(oldschooljs.Items);
             var item_key = item_keys[Math.floor(Math.random() * item_keys.length)];
             
-            channel.send("Kill me a... " + oldschooljs.Monsters[monster_key].name + " or find me a... " + oldschooljs.Items[item_key].name);
+            channel.send("Kill me a... " + oldschooljs.Monsters[monster_key].name + " before you leave. (ง ͠° ͟ل͜ ͡°)ง");
         }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
