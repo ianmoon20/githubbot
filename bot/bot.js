@@ -8,6 +8,7 @@ const client = new Discord.Client();
 const debug = false;
 
 const token = process.env.TOKEN;
+var hasKilled = false;
 
 const diceCommands = {
     '!highest': command.RollHighest,
@@ -22,7 +23,8 @@ const adminCommands = {
     '!admin': command.admin,
     '!revoke': command.unadmin,
     '!adminlist': command.adminList,
-    '!unadmin': command.unadmin
+    '!unadmin': command.unadmin,
+    '!confirmkill': hasKilled = true
 };
 
 const customCommands = {
@@ -95,11 +97,19 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
             var item_key = item_keys[Math.floor(Math.random() * item_keys.length)];
             
             channel.send("<@251911242824941569> Kill me a... " + oldschooljs.Monsters[monster_key].name + " before you leave. (ง ͠° ͟ل͜ ͡°)ง");
+            hasKilled = false;
         }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
 
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
+        if (newMember.user.id == "251911242824941569") {
+            if(hasKilled == false) {
+                channel.send("<@251911242824941569> This is why you can't raid! ｡゜(｀Д´)゜｡");  
+            } else {
+                channel.send("<@251911242824941569> The madlad did it... (ʘᗩʘ')"); 
+            };
+        }
         channel.send(leaving[newMember.user.id]);
     }
 });
