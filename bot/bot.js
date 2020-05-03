@@ -111,7 +111,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 });
 
 client.on('message', msg => {
-    const content = msg.content;
+    const content = msg.content.trim();
 
     if (content[0] === '!') {
         let firstSpace = content.indexOf(' ');
@@ -256,6 +256,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (nickCommands[firstWord]) {
+            const num = parseInt(content.slice(firstSpace + 1, content.length), 10);
             response = nickCommands[firstWord](authorID, client);
 
             return msg.channel.send(response);

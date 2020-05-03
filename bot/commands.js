@@ -76,9 +76,11 @@ const reroll = (author, client) => {
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   } else if (currentMonster != null) {
-    response = `${`<@${NickID}>`} has given up on ${currentMonster} and ${currentBounty}.`;
+    response = `${`<@${NickID}>`} has given up on ${currentMonster} and ${currentBounty} points.`;
+    currentMonster = null;
+      currentBounty = null;
   }
-
+    
   return `${response}\n${setMonster(author, client)}`;
 };
 
