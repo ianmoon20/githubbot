@@ -246,7 +246,7 @@ client.on('message', msg => {
             if ((!customCommands.hasOwnProperty(authorID) || Object.keys(customCommands[authorID]).length == 0) && Object.keys(customCommands["universal"]).length == 0) {
                 response += `You don't have any custom commands. See !help.`;
             } else {
-                response += ` \nUniversal: \n`;
+                response += ` Universal: \n`;
                 for (var keys in customCommands["universal"]) {
                     response += keys + `: ` + customCommands["universal"][keys] + `\n`;
                 }
