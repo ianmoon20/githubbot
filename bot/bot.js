@@ -3,7 +3,7 @@ const command = require('./commands.js');
 const async = require("async");
 const oldschooljs = require('oldschooljs');
 
-await oldschooljs.fetchAll();
+oldschooljs.fetchAll();
 
 const client = new Discord.Client();
 
