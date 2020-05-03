@@ -176,7 +176,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (adminCommands[firstWord]) {
-            if(typeof msg.mentions.users.first().id !== 'undefined') {
+            if(msg.mentions.users.first()) {
                 user = msg.mentions.users.first().id;
             } else {
                 user = content.slice(firstSpace + 1, content.length);
