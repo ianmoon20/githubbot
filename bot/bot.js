@@ -257,7 +257,7 @@ client.on('message', msg => {
             return msg.reply(response);
         } else if (nickCommands[firstWord]) {
             const num = parseInt(content.slice(firstSpace + 1, content.length), 10);
-            response = nickCommands[firstWord](authorID, client);
+            response = nickCommands[firstWord](authorID, num, client);
 
             return msg.channel.send(response);
         }
