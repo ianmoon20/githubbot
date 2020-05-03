@@ -94,7 +94,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
 
   if (oldUserChannel === undefined && newUserChannel !== undefined) {
     if (newMember.user.id === '251911242824941569') {
-      channel.send(nickCommands['!setmonster']('<@251911037178085376>'));
+      channel.send(nickCommands['!setmonster']('251911037178085376'));
     }
         // User Joins a voice channel
     channel.send(greetings[newMember.user.id]);
@@ -256,7 +256,7 @@ client.on('message', msg => {
 
       return msg.reply(response);
     } else if (nickCommands[firstWord]) {
-      response = nickCommands[firstWord](user, authorID, client);
+      response = nickCommands[firstWord](authorID, client);
 
       return msg.channel.send(response);
     }
