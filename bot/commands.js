@@ -1,6 +1,6 @@
 const random = require('random');
 const Discord = require('discord.js');
-const client = 'hello';
+const oldschooljs = require('oldschooljs');
 
 const bannedUsers = {
 
@@ -11,6 +11,157 @@ const adminUsers = {
   '251911037178085376': 'Praise Ian or perish... (/◕ヮ◕)/',
 };
 
+/* NICK FUNCTIONS*/
+const NickID = 251911242824941569;
+let currentMonster = null;
+let nickPoints = 0;
+let currentBounty = 0;
+
+const confirmKill = (author, client) => {
+  let response = '<@251911242824941569> has no monster set.';
+  if (!adminUsers[author]) {
+    return 'You\'re not a questgiver! <(｀^´)>';
+  }
+
+  currentMonster = null;
+  nickPoints += currentBounty;
+  currentBounty = 0;
+
+  response = `${`<@${NickID}>`} has slain ${currentMonster} for ${currentBounty} points! He's now at ${nickPoints}. ☜(˚▽˚)☞`;
+
+  return response;
+};
+
+const confirmKillMeta = () => {
+  const meta = {
+    name: '!confirmkill',
+    desc: 'Confirms that Nick killed his monster.',
+    usage: '!confirmkill',
+  };
+
+  return meta;
+};
+
+const setMonster = (author, client) => {
+  let response = `<@251911242824941569> already has ${currentMonster} for ${currentBounty} points! ⋋_⋌`;
+  if (!adminUsers[author]) {
+    return 'You\'re not a questgiver! <(｀^´)>';
+  } else if (currentMonster != null) {
+    return response;
+  }
+
+  const monster_keys = Object.keys(oldschooljs.Monsters);
+  const monster_key = monster_keys[Math.floor(Math.random() * monster_keys.length)];
+
+  currentMonster = oldschooljs.Monsters[monster_key].name;
+  currentBounty = 1;
+
+  response = `${`<@${NickID}>`} has been assigned ${currentMonster} for ${currentBounty} points! He's at ${nickPoints}. ☜(˚▽˚)☞`;
+
+  return response;
+};
+
+const setMonsterMeta = () => {
+  const meta = {
+    name: '!setmonster',
+    desc: 'Gives Nick a monster in OSRS to kill',
+    usage: '!setmonster',
+  };
+
+  return meta;
+};
+
+const reroll = (author, client) => {
+  let response = '<@251911242824941569> has no monster set.';
+  if (!adminUsers[author]) {
+    return 'You\'re not a questgiver! <(｀^´)>';
+  } else if (currentMonster != null) {
+    response = `<@251911242824941569> has given up on ${currentMonster} and ${currentBounty}.`;
+  }
+
+  return `${response}\n${setMonster(author, client)}`;
+};
+
+const rerollMeta = () => {
+  const meta = {
+    name: '!reroll',
+    desc: 'Gives Nick a new monster in OSRS to kill. Usually this costs 5 points, but you can be generous. Use the modify points command to adjust his points',
+    usage: '!reroll',
+  };
+
+  return meta;
+};
+
+const setBounty = (author, num, client) => {
+  let response = '<@251911242824941569>\'s bounty for some reason can\'t be changed.';
+  if (!adminUsers[author]) {
+    return 'You\'re not a questgiver! <(｀^´)>';
+  } else if (isNaN(num)) {
+    response = 'Passed in number must be a whole number. Example: -1, 0, 1, 2..';
+    return response;
+  }
+
+  currentBounty += num;
+  response = `${`<@${NickID}>`}'s ${currentMonster} is now worth ${currentBounty} points! He's now at ${nickPoints}. ☜(˚▽˚)☞`;
+};
+
+const setBountyMeta = () => {
+  const meta = {
+    name: '!setbounty',
+    desc: 'Gives or takes away Nick\'s points from Nick\'s bounty by X. Use a negative number to take away points.',
+    usage: '!setbounty X',
+  };
+
+  return meta;
+};
+
+const modifyPoints = (author, num, client) => {
+  let response = '<@251911242824941569>\'s points for some reason can\'t be changed.';
+  if (!adminUsers[author]) {
+    return 'You\'re not a questgiver! <(｀^´)>';
+  } else if (isNaN(num)) {
+    response = 'Passed in number must be a whole number. Example: -1, 0, 1, 2..';
+    return response;
+  }
+
+  nickPoints += num;
+  if (nickPoints < 0) {
+    nickPoints = 0;
+  }
+  response = `${`<@${NickID}>`} is now at ${nickPoints}.`;
+};
+
+const modifyPointsMeta = () => {
+  const meta = {
+    name: '!modifypoints',
+    desc: 'Gives or takes away Nick\'s points by X. Use a negative number to take away points.',
+    usage: '!modifypoints X',
+  };
+
+  return meta;
+};
+
+const getStats = (author, client) => {
+  let response;
+  if (currentMonster != null) {
+    response = `<@251911242824941569>'s current currentMonster is ${currentMonster} which is worth ${currentBounty} points. He has ${nickPoints} points.`;
+  } else {
+    response = `<@251911242824941569> has ${nickPoints} points.`;
+  }
+
+  return response;
+};
+
+const getStatsMeta = () => {
+  const meta = {
+    name: '!stats',
+    desc: 'Gets Nick\'s current monster, bounty, and points.',
+    usage: '!stats',
+  };
+
+  return meta;
+};
+/* NICK FUNCTIONS ENDS*/
 const RollDice = (user, num, size, mod) => {
     // console.log(mod);
 
@@ -240,6 +391,7 @@ const unadmin = (user, author, client) => {
   return response;
 };
 
+
 const adminList = () => {
   let response = 'No one has ascended! (╬ ಠ益ಠ)';
   if (Object.keys(adminUsers).length > 0) {
@@ -274,6 +426,12 @@ const help = () => {
     6: unbanMeta(),
     7: banListMeta(),
     8: adminListMeta(),
+    9: confirmKillMeta(),
+    10: setMonsterMeta(),
+    11: rerollMeta(),
+    12: setBountyMeta(),
+    13: modifyPointsMeta(),
+    14: getStatsMeta(),
     embed: true,
   };
 
@@ -290,4 +448,12 @@ module.exports.banList = banList;
 module.exports.admin = admin;
 module.exports.unadmin = unadmin;
 module.exports.adminList = adminList;
+
+module.exports.confirmKill = confirmKill;
+module.exports.setMonster = setMonster;
+module.exports.reroll = reroll;
+module.exports.setBounty = setBounty;
+module.exports.modifyPoints = modifyPoints;
+module.exports.getSets = getStats;
+
 module.exports.client = client;
