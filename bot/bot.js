@@ -30,7 +30,7 @@ const nickCommands = {
   '!reroll': command.reroll,
   '!setbounty': command.setBounty,
   '!modifypoints': command.modifyPoints,
-  '!stats': command.getStats,
+  '!stats': command.getStats
 };
 
 const customCommands = {
@@ -260,6 +260,8 @@ client.on('message', msg => {
 
       return msg.channel.send(response);
     }
+      
+    console.log(firstWord);
 
     return msg.reply(`Invalid Command. (${firstWord}) >-<`);
   }

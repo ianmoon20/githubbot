@@ -18,7 +18,7 @@ let nickPoints = 0;
 let currentBounty = 0;
 
 const confirmKill = (author, client) => {
-  let response = '<@251911242824941569> has no monster set.';
+  let response = `${`<@${NickID}>`} has no monster set.`;
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   }
@@ -43,7 +43,7 @@ const confirmKillMeta = () => {
 };
 
 const setMonster = (author, client) => {
-  let response = `<@251911242824941569> already has ${currentMonster} for ${currentBounty} points! ⋋_⋌`;
+  let response = `${`<@${NickID}>`} already has ${currentMonster} for ${currentBounty} points! ⋋_⋌`;
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   } else if (currentMonster != null) {
@@ -72,11 +72,11 @@ const setMonsterMeta = () => {
 };
 
 const reroll = (author, client) => {
-  let response = '<@251911242824941569> has no monster set.';
+  let response = `${`<@${NickID}>`} has no monster set.`;
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   } else if (currentMonster != null) {
-    response = `<@251911242824941569> has given up on ${currentMonster} and ${currentBounty}.`;
+    response = `${`<@${NickID}>`} has given up on ${currentMonster} and ${currentBounty}.`;
   }
 
   return `${response}\n${setMonster(author, client)}`;
@@ -93,7 +93,7 @@ const rerollMeta = () => {
 };
 
 const setBounty = (author, num, client) => {
-  let response = '<@251911242824941569>\'s bounty for some reason can\'t be changed.';
+  let response = `${`<@${NickID}>`}\'s bounty for some reason can\'t be changed.`;
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   } else if (isNaN(num)) {
@@ -116,7 +116,7 @@ const setBountyMeta = () => {
 };
 
 const modifyPoints = (author, num, client) => {
-  let response = '<@251911242824941569>\'s points for some reason can\'t be changed.';
+  let response = `${`<@${NickID}>`}\'s points for some reason can\'t be changed.`;
   if (!adminUsers[author]) {
     return 'You\'re not a questgiver! <(｀^´)>';
   } else if (isNaN(num)) {
@@ -144,9 +144,9 @@ const modifyPointsMeta = () => {
 const getStats = (author, client) => {
   let response;
   if (currentMonster != null) {
-    response = `<@251911242824941569>'s current currentMonster is ${currentMonster} which is worth ${currentBounty} points. He has ${nickPoints} points.`;
+    response = `${`<@${NickID}>`}'s current currentMonster is ${currentMonster} which is worth ${currentBounty} points. He has ${nickPoints} points.`;
   } else {
-    response = `<@251911242824941569> has ${nickPoints} points.`;
+    response = `${`<@${NickID}>`} has ${nickPoints} points.`;
   }
 
   return response;
