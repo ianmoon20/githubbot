@@ -454,4 +454,4 @@ module.exports.setMonster = setMonster;
 module.exports.reroll = reroll;
 module.exports.setBounty = setBounty;
 module.exports.modifyPoints = modifyPoints;
-module.exports.getSets = getStats;
+module.exports.getStats = getStats;
