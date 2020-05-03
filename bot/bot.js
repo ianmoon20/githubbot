@@ -83,19 +83,15 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-        /*if (newMember.user.id = "251911242824941569") {
-            (async() => {
-                const {
-                    err,
-                    ttm
-                } = await cml.ttm('hoohoomoomoo');
-                if (!err) {
-                    channel.send(ttm.hours);
-                    // { hours: 0, rank: 268 }
-                    // lynx titan was the 268th person to max in oldschool runescape
-                }
-            })();
-        }*/
+        if (newMember.user.id = "251911242824941569") {
+            var monster_keys = Object.keys(oldschooljs.Monsters);
+            var ran_key = monster_keys[Math.floor(Math.random() * obj_keys.length)];
+            
+            var obj_keys = Object.keys(oldschooljs.Monsters);
+            var item_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
+            
+            return msg.reply("Kill me a... " + oldschooljs.Monsters[ran_key].name + " or find me a... " + oldschooljs.Items[item_key].name);
+        }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
 
@@ -275,12 +271,6 @@ client.on('message', msg => {
             }
 
             return msg.reply(response);
-        } else if(firstWord == "!runescape") {
-            var obj_keys = Object.keys(oldschooljs.Monsters);
-            var ran_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
-            console.log(oldschooljs);
-            
-            return msg.reply("Find me a... " + oldschooljs.Monsters[ran_key].name);
         }
 
         return msg.reply(`Invalid Command. (${firstWord}) >-<`);
