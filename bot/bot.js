@@ -85,12 +85,12 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
         if (newMember.user.id = "251911242824941569") {
             var monster_keys = Object.keys(oldschooljs.Monsters);
-            var ran_key = monster_keys[Math.floor(Math.random() * monster_keys.length)];
+            var monster_key = monster_keys[Math.floor(Math.random() * monster_keys.length)];
             
-            var obj_keys = Object.keys(oldschooljs.Monsters);
-            var item_key = obj_keys[Math.floor(Math.random() * obj_keys.length)];
+            var item_keys = Object.keys(oldschooljs.Items);
+            var item_key = item_keys[Math.floor(Math.random() * item_keys.length)];
             
-            channel.send("Kill me a... " + oldschooljs.Monsters[ran_key].name + " or find me a... " + oldschooljs.Items[item_key].name);
+            channel.send("Kill me a... " + oldschooljs.Monsters[monster_key].name + " or find me a... " + oldschooljs.Items[item_key].name);
         }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
