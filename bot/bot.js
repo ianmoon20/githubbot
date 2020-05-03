@@ -176,8 +176,11 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (adminCommands[firstWord]) {
-            console.log(msg.mentions.users.first().id);
-            user = msg.mentions.users.first().id;
+            if(typeof msg.mentions.users.first().id !== 'undefined') {
+                user = msg.mentions.users.first().id;
+            } else {
+                user = content.slice(firstSpace + 1, content.length);
+            }
             response = adminCommands[firstWord](user, authorID, client);
 
             if (response.embed) {
@@ -260,3 +263,5 @@ client.on('message', msg => {
 });
 
 client.login(token);
+
+function RollDie()
