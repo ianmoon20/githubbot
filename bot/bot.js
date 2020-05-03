@@ -100,7 +100,7 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
         channel.send(greetings[newMember.user.id]);
     } else if (newUserChannel === undefined && leaving[newMember.user.id]) {
         if (newMember.user.id === '251911242824941569') {
-            command.nickLeaving();
+            command.nickLeaving(client);
         }
         channel.send(leaving[newMember.user.id]);
     }
