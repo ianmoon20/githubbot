@@ -176,6 +176,7 @@ client.on('message', msg => {
 
             return msg.reply(response);
         } else if (adminCommands[firstWord]) {
+            console.log(msg.mentions.users.first().id);
             user = msg.mentions.users.first().id;
             response = adminCommands[firstWord](user, authorID, client);
 
