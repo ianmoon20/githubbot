@@ -50,7 +50,9 @@ const greetings = {
     //Nick J
     "308410594002731008": "Act natural act natural... we've done nothing wrong.",
     //Merrick
-    "300095616116195330": "I've never been so happy! ヽ(*￣o￣*)ノ♩♫♪"
+    "300095616116195330": "I've never been so happy! ヽ(*￣o￣*)ノ♩♫♪",
+    //Blayda
+    "275760710728810496": "Bet you won't even arrest me. ಠ╭╮ಠ"
 };
 
 const leaving = {
@@ -65,7 +67,9 @@ const leaving = {
     //Nick J
     "308410594002731008": "Okay, don't panic, alright? Stop panicking!",
     //Merrick
-    "300095616116195330": "I've never experienced such crushing sadness.. (⌣̩̩́_⌣̩̩̀)"
+    "300095616116195330": "I've never experienced such crushing sadness.. (⌣̩̩́_⌣̩̩̀)",
+    //Blayda
+    "275760710728810496": "There goes the Fake Cop. (☞ﾟ∀ﾟ)☞"
 };
 
 client.on('ready', () => {
@@ -83,14 +87,14 @@ client.on('voiceStateUpdate', (oldMember, newMember) => {
     if (!channel) return;
 
     if (oldUserChannel === undefined && newUserChannel !== undefined) {
-        if (newMember.user.id = "251911242824941569") {
+        if (newMember.user.id == "251911242824941569") {
             var monster_keys = Object.keys(oldschooljs.Monsters);
             var monster_key = monster_keys[Math.floor(Math.random() * monster_keys.length)];
             
             var item_keys = Object.keys(oldschooljs.Items);
             var item_key = item_keys[Math.floor(Math.random() * item_keys.length)];
             
-            channel.send("Kill me a... " + oldschooljs.Monsters[monster_key].name + " before you leave. (ง ͠° ͟ل͜ ͡°)ง");
+            channel.send("<@251911242824941569> Kill me a... " + oldschooljs.Monsters[monster_key].name + " before you leave. (ง ͠° ͟ل͜ ͡°)ง");
         }
         // User Joins a voice channel
         channel.send(greetings[newMember.user.id]);
