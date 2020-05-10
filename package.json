@@ -19,6 +19,7 @@
         "dblapi.js": "^2.3.0",
         "discord.io": "^2.5.3",
         "discord.js": "^11.4.2",
+        "mysql": "^2.18.1",
         "nodemon": "^1.18.5",
         "oldschooljs": "^1.1.2",
         "random": "^2.0.12",

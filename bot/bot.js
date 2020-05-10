@@ -221,6 +221,30 @@ client.on('message', msg => {
             }
 
             return msg.channel.send(response);
+        } else if (firstWord == "!create") {
+            const secondSpace = content.indexOf(' ', firstSpace + 1);
+            const thirdSpace = content.indexOf(' ', secondSpace + 1);
+            const name = "!" + content.substr(firstSpace + 1, secondSpace - firstSpace - 1).toLowerCase();
+            const purpose = content.substr(secondSpace + 1, content.length);
+
+            if (firstSpace == -1 || secondSpace == -1) {
+                response += `Missing either the name or roll information. Format should be like the following: !create fireball 1d10+0.`;
+            } else if (thirdSpace != -1) {
+                response += `Too many arguments. This is usually caused by using a two word name. Format should be like the following: !create MyDagger 1d4+2.`;
+            } else if (diceCommands.hasOwnProperty(name) || adminCommands.hasOwnProperty(name) || name == "create" || name == "remove" || name == "commands") {
+                response += `Name '${name}' is already reserved for other commands.`;
+            } else {
+                if (!customCommands.hasOwnProperty(authorID)) {
+                    customCommands[authorID] = {};
+                }
+
+                customCommands[authorID][name] = purpose;
+
+                response += `Command ${name} created! Type ${name} to use.`;
+            }
+
+            return msg.reply(response);
+
         } else if (firstWord === '!remove') {
             const name = `!${content.substr(firstSpace + 1, content.length).toLowerCase()}`;
 
