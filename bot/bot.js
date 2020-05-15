@@ -1,3 +1,4 @@
+//Should be fixed
 const Discord = require('discord.js');
 const command = require('./commands.js');
 
